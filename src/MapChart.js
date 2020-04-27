@@ -8,6 +8,9 @@ import {
 
 const geoUrl =
   "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+//this is where the map data comes from
+
+const covidApi =  "https://api.covid19api.com/summary"
 
 const rounded = num => {
   if (num > 1000000000) {
@@ -18,6 +21,8 @@ const rounded = num => {
     return Math.round(num / 100) / 10 + "K";
   }
 };
+
+// want to make an axios call here or something to then map through and add (instead of pop est) data from the covid api
 
 const MapChart = ({ setTooltipContent }) => {
   return (
