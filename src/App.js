@@ -3,7 +3,7 @@ import ReactTooltip from "react-tooltip";
 
 import "./index.css";
 
-import MapChart from "./MapChart";
+import MapChart from "./MapChart.jsx";
 
 import axios from 'axios';
 
