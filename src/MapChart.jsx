@@ -53,12 +53,13 @@ const MapChart = ({ setTooltipContent }) => {
           geoUrlRes = res.data;
           geoData = res.data.objects.ne_110m_admin_0_countries.geometries;
           geoData = geoData.map((geoCountry, geoIndex) => {
-            return countries.map((country, countryIndex) => {
-              if (geoCountry.properties.name === country.Country.name) {
+            countries.map((country, countryIndex) => {
+              if (geoCountry.properties.NAME === country.Country) {
                 geoCountry.properties.newCases = country.NewConfirmed;
-                return geoCountry;
+                console.log(geoCountry.properties.NAME, country.Country, 'matched name')
               }
               else {
+                console.log(geoCountry.properties.NAME, country.Country)
                 console.log('country doesnt match name');
               }
             })
@@ -91,8 +92,8 @@ const MapChart = ({ setTooltipContent }) => {
                     data-tip={''}
                     onMouseEnter={() => {
                       ReactTooltip.rebuild(); 
-                      const { newCases } = geo.properties;
-                      setTooltipContent(`${newCases}`);
+                      const { newCases, NAME } = geo.properties;
+                      setTooltipContent(`${NAME} - ${newCases}`);
                     }}
                     onMouseLeave={() => {
                       setTooltipContent("");
