@@ -9,6 +9,7 @@ import {
 import { render } from "@testing-library/react";
 import ReactTooltip from "react-tooltip"
 
+import history from './utils/history';
 
 //this is where the map data comes from
 
@@ -28,7 +29,7 @@ const rounded = num => {
 
 // want to make an axios call here or something to then map through and add (instead of pop est) data from the covid api
 
-const MapChart = ({ setTooltipContent }) => {
+const MapChart = ({ setTooltipContent, display }) => {
   const testMouse = num => {
     setTooltipContent(num);
   };
@@ -59,8 +60,6 @@ const MapChart = ({ setTooltipContent }) => {
                 console.log(geoCountry.properties.NAME, country.Country, 'matched name')
               }
               else {
-                console.log(geoCountry.properties.NAME, country.Country)
-                console.log('country doesnt match name');
               }
             })
           })
@@ -71,13 +70,23 @@ const MapChart = ({ setTooltipContent }) => {
       })
     }
   }, [yearlyData]);
-  console.log(yearlyData, 'this is yearly data');
+  if (display === "none") {
+    return (
+      null
+    )
+  } else {
     return (
       <>
       { // Check if year exists
         (yearlyData && yearlyData.arcs)
           ? (
-        <ComposableMap data-tip="" projectionConfig={{ scale: 200 }}>
+        <ComposableMap data-tip="" width={980}
+        height={551}
+        style={{
+           width: "100%",
+           height: "auto",
+           display: display
+        }} projectionConfig={{ scale: 200 }}>
           <ZoomableGroup>
             <Geographies geography={yearlyData}>
               {({ geographies }) =>
@@ -86,13 +95,13 @@ const MapChart = ({ setTooltipContent }) => {
                     key={geo.rsmKey}
                     geography={geo}
                     onClick={() => {
-                      console.log('yo')
-                      setTooltipContent(`123132`);
+                      history.push(`/country/${123}`);
                     }}
                     data-tip={''}
                     onMouseEnter={() => {
                       ReactTooltip.rebuild(); 
                       const { newCases, NAME } = geo.properties;
+                      console.log('entered');
                       setTooltipContent(`${NAME} - ${newCases}`);
                     }}
                     onMouseLeave={() => {
@@ -123,6 +132,7 @@ const MapChart = ({ setTooltipContent }) => {
       }
       </>
     );
+  }
 };
 
 export default memo(MapChart);
