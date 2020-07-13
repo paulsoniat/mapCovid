@@ -1,5 +1,5 @@
 .map-hover {
-    width: 20vw;
+    width: 25vw;
     display: flex;
     flex-direction: row;
     background-color: black;
@@ -18,8 +18,8 @@
 
     &__stat-title {
         margin: .5rem;
-        max-width: 70%;
-        width: 66%;
+        max-width: 100%;
+        width: 100%;
         flex: 1;
         flex-direction: column;
         color: whitesmoke;

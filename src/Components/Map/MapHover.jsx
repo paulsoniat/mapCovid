@@ -23,48 +23,25 @@ if (properties) {
 
         <div className="map-hover__stat-title">
             <div style={{color: "yellow"}}>
-                New Cases (24h)
+                New Cases (24h) - {rounded(properties.newCases)}
             </div>
             <br/>
 
             <div style={{color: "orange"}}>
-                Total Confirmed
+                Total Confirmed - {rounded(properties.totalConfirmed)}
             </div>
             <br/>
 
             <div style={{color: "FireBrick"}}>
-                Deaths
+                Deaths - {rounded(properties.totalDeaths)}
             </div>
             <br/>
 
             <div style={{color: "Chartreuse"}}>
-                Recovered
+                Recovered - {rounded(properties.totalRecovered)}
             </div>
             <br/>
-        </div>
-
-        <div className="map-hover__info">
-            <div style={{color: "yellow"}}>
-                {rounded(properties.newCases)}
-            </div>
-            <br/>
-            
-            <div style={{color: "orange"}}>
-                {rounded(properties.totalConfirmed)}
-            </div>
-            <br/>
-
-            <div style={{color: "FireBrick"}}>
-                {rounded(properties.totalDeaths)}
-            </div>
-            <br />
-
-            <div style={{color: "Chartreuse"}}>
-                {rounded(properties.totalRecovered)}
-            </div>
-            <br/>
-
-        </div>
+        </div> 
     </div>
     </>
   );

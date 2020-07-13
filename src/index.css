@@ -19,5 +19,5 @@ svg {
 .tooltip {
   border-radius: .5rem;
   opacity: 1 !important;
-  background-color: red;
+  width: 25vw !important;
 }
