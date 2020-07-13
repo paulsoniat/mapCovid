@@ -1,26 +1,26 @@
-import React, { useState, Component } from "react";
+import React, { useState} from "react";
 import ReactTooltip from "react-tooltip";
-import ProjectRouter from './ProjectRouter';
+import ProjectRouter from '../Router/ProjectRouter';
 import { Router } from 'react-router-dom';
-import history from './utils/history';
+import history from '../../utils/history';
+import '../Navbar/Navbar';
 
-import "./index.css";
+import "../../index.css";
 
-import MapChart from "./MapChart.jsx";
-
-import axios from 'axios';
+import MapChart from "../Map/MapChart.jsx";
+import Navbar from "../Navbar/Navbar";
 
 function App() {
   const [content, setContent] = useState("");
-  console.log(content)
   return (
     <div>
+      <Navbar />
       <Router history={history}>
       <ProjectRouter setTooltipContent={setContent}>
       </ProjectRouter>
       </Router>
       <MapChart display={"none"} setTooltipContent={setContent} />
-      <ReactTooltip>{content}</ReactTooltip>
+      <ReactTooltip className="tooltip">{content}</ReactTooltip>
     </div>
   );
 }

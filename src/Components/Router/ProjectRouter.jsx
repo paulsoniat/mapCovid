@@ -1,10 +1,7 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import ReactTooltip from "react-tooltip";
-import MapChart from './MapChart';
-import Country from './Country';
-
-import history from './utils/history';
+import { Switch, Route } from 'react-router-dom';
+import MapChart from '../Map/MapChart';
+import Country from '../Country/Country'
 
 const ProjectRouter = ({
   setTooltipContent,
