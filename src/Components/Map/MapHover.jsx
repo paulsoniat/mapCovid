@@ -21,7 +21,7 @@ if (properties) {
     <div className="map-hover">
 
 
-        <div className="map-hover__stat-title">
+        <div className="map-hover__title">
             <div style={{color: "yellow"}}>
                 New Cases (24h) - {rounded(properties.newCases)}
             </div>
