@@ -1,0 +1,35 @@
+.map-hover {
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    justify-content: space-around;
+    border-radius: .5rem;
+
+    &__title {
+        max-width: 100%;
+        width: 100%;
+        flex: 1;
+        flex-direction: row;
+        color: whitesmoke;
+        text-align: center;
+        margin: 1rem 0rem;
+    }
+
+    &__stat-title {
+        margin: .5rem;
+        max-width: 100%;
+        width: 100%;
+        flex: 1;
+        flex-direction: column;
+        color: whitesmoke;
+    }
+    &__info {
+        margin: .5rem;
+        max-width: 30%;
+        width: 25%;
+        flex: 1;
+        flex-direction: column;
+        color: whitesmoke;
+    }
+}

@@ -6,40 +6,19 @@ import {
   Geographies,
   Geography
 } from "react-simple-maps";
-import { render } from "@testing-library/react";
 import ReactTooltip from "react-tooltip"
+import MapHover from './MapHover';
 
-import history from './utils/history';
+import BacteriaLoader from '../Loaders/BacteriaLoader'
 
-//this is where the map data comes from
-
-const covidApi =  "https://api.covid19api.com/summary"
-
-
-const rounded = num => {
-  if (num > 1000000000) {
-    return Math.round(num / 100000000) / 10 + "Bn";
-  } else if (num > 1000000) {
-    return Math.round(num / 100000) / 10 + "M";
-  } else {
-    return Math.round(num / 100) / 10 + "K";
-  }
-};
-
-
-// want to make an axios call here or something to then map through and add (instead of pop est) data from the covid api
+import history from '../../utils/history';
 
 const MapChart = ({ setTooltipContent, display }) => {
-  const testMouse = num => {
-    setTooltipContent(num);
-  };
-  let covidData = [];
 
   const [yearlyData, setYearlyData] = useState(null);
   
   useEffect(()=>{
     if(!yearlyData) {
-      console.log('this is useeffect')
       let countries;
       let geoData;
       let geoUrlRes;
@@ -57,7 +36,13 @@ const MapChart = ({ setTooltipContent, display }) => {
             countries.map((country, countryIndex) => {
               if (geoCountry.properties.NAME === country.Country) {
                 geoCountry.properties.newCases = country.NewConfirmed;
-                console.log(geoCountry.properties.NAME, country.Country, 'matched name')
+                geoCountry.properties.countryCode = country.CountryCode;
+                geoCountry.properties.slug = country.Slug;
+                geoCountry.properties.newDeaths = country.NewDeaths
+                geoCountry.properties.newRecovered = country.NewRecovered
+                geoCountry.properties.totalConfirmed = country.TotalConfirmed
+                geoCountry.properties.totalDeaths = country.TotalDeaths
+                geoCountry.properties.totalRecovered = country.TotalRecovered
               }
               else {
               }
@@ -65,11 +50,55 @@ const MapChart = ({ setTooltipContent, display }) => {
           })
           const allGeoData = geoUrlRes
           geoUrl = allGeoData;
-          setYearlyData(geoUrl);
+          setTimeout(() => {
+            setYearlyData(geoUrl)
+          }, 1500)
         })
       })
     }
   }, [yearlyData]);
+
+
+
+const h = window.innerHeight - 60
+|| document.documentElement.clientHeight -60
+|| document.body.clientHeight - 60;
+  const colorPicker = (newCases) => {
+
+    let color;
+    if (newCases > 10000) {
+      color = "#ff0000";
+    }
+    if (newCases <= 10000 & newCases >= 5000) {
+      color = "#ff1919";
+    }
+    if (newCases <= 5000 & newCases >=  2500) {
+      color = "#ff3232";
+    }
+    if (newCases <= 2500 & newCases >= 2000) {
+      color = "#ff4c4c";
+    }
+    if (newCases <= 2000 & newCases >= 1500) {
+      color = "#ff6666"
+    }
+    if (newCases <= 1500 & newCases >= 1000) {
+      color = "#ff7f7f"
+    }
+    if (newCases <= 1000 & newCases >= 500) {
+      color = "#ff9999"
+    }
+    if (newCases <= 500 & newCases >= 250) {
+      color = "#ffb2b2"
+    }
+    if (newCases <= 250 || newCases === undefined) {
+      color = "#ffcccc"
+    }
+    return color;
+  }
+  if(yearlyData) {
+
+    console.log(yearlyData)
+  }
   if (display === "none") {
     return (
       null
@@ -77,16 +106,13 @@ const MapChart = ({ setTooltipContent, display }) => {
   } else {
     return (
       <>
-      { // Check if year exists
+      {
         (yearlyData && yearlyData.arcs)
           ? (
-        <ComposableMap data-tip="" width={980}
-        height={551}
-        style={{
-           width: "100%",
-           height: "auto",
-           display: display
-        }} projectionConfig={{ scale: 200 }}>
+        <ComposableMap data-tip=""
+        height={h}
+        className="map-chart" 
+        projectionConfig={{ scale: 200 }}>
           <ZoomableGroup>
             <Geographies geography={yearlyData}>
               {({ geographies }) =>
@@ -95,30 +121,29 @@ const MapChart = ({ setTooltipContent, display }) => {
                     key={geo.rsmKey}
                     geography={geo}
                     onClick={() => {
-                      history.push(`/country/${123}`);
+                      console.log('clicked');
+                      history.push(`/country/${geo.properties.NAME}`);
                     }}
                     data-tip={''}
                     onMouseEnter={() => {
                       ReactTooltip.rebuild(); 
-                      const { newCases, NAME } = geo.properties;
-                      console.log('entered');
-                      setTooltipContent(`${NAME} - ${newCases}`);
+                      setTooltipContent(<MapHover countryData={geo} />);
                     }}
                     onMouseLeave={() => {
                       setTooltipContent("");
                     }}
                     style={{
                       default: {
-                        fill: "#D6D6DA",
-                        outline: "none"
+                        fill: `${colorPicker(geo.properties.newCases)}`,
+                        stroke: "#191919",
                       },
                       hover: {
-                        fill: "#F53",
-                        outline: "none"
+                        fill: "#a9a9a9",
+                        stroke: "#191919"
                       },
                       pressed: {
-                        fill: "#E42",
-                        outline: "none"
+                        fill: "none",
+                        stroke: "none"
                       }
                     }}
                   />
@@ -128,7 +153,7 @@ const MapChart = ({ setTooltipContent, display }) => {
           </ZoomableGroup>
         </ComposableMap>
           )
-          : <div>Loading...</div>
+          : <BacteriaLoader />
       }
       </>
     );
