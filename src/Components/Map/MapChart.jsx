@@ -10,12 +10,13 @@ import ReactTooltip from "react-tooltip"
 import MapHover from './MapHover';
 
 import BacteriaLoader from '../Loaders/BacteriaLoader'
-
+import TextModal from '../Modal/TextModal'
 import history from '../../utils/history';
 
 const MapChart = ({ setTooltipContent, display }) => {
 
   const [yearlyData, setYearlyData] = useState(null);
+  const [modalDisplay, setModalDisplay] = useState(true);
   
   useEffect(()=>{
     if(!yearlyData) {
@@ -95,10 +96,12 @@ const h = window.innerHeight - 60
     }
     return color;
   }
-  if(yearlyData) {
 
-    console.log(yearlyData)
+  const handleModalClose = () => {
+    setModalDisplay(!modalDisplay)
   }
+  const modalHeaderText = "Welcome to the Covid-19 Dashboard";
+  const modalBodyText = "Hover over a country to display latest data about the country's Covid situation. Click on a country to dive deeper into the country's numbers. You can support the site by buying me a coffee and connect with me on LinkedIn"
   if (display === "none") {
     return (
       null
@@ -107,7 +110,12 @@ const h = window.innerHeight - 60
     return (
       <>
       {
-        (yearlyData && yearlyData.arcs)
+      (modalDisplay) ? (
+        <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
+      ) : null
+      }
+      {
+        (yearlyData && yearlyData.arcs && !modalDisplay)
           ? (
         <ComposableMap data-tip=""
         height={h}
@@ -153,7 +161,10 @@ const h = window.innerHeight - 60
           </ZoomableGroup>
         </ComposableMap>
           )
-          : <BacteriaLoader />
+          : 
+          <div className={modalDisplay ? "hidden" : null}>
+            <BacteriaLoader />
+          </div>
       }
       </>
     );

@@ -5,6 +5,9 @@ html, body {
   background-color: rgba(0, 0, 0, 0.35);
   font-size: 1.25rem;
   color: whitesmoke !important;
+  @media only screen and (max-width: 550px) {
+    font-size: 50%;
+  }
 }
 
 .hidden {
@@ -14,6 +17,7 @@ html, body {
 svg {
   display: inline-block;
   vertical-align: middle;
+  overflow: visible !important;
 }
 
 .tooltip {

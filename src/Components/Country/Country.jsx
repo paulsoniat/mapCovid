@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, Legend } from 'recharts';
 import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, {name: 'Page b', uv: 300, pv: 2400, amt: 2400},{name: 'Page c', uv: 200, pv: 2400, amt: 2400},{name: 'Page d', uv: 140, pv: 2400, amt: 2400} ];
+import USMapByCounty from "../Map/USMapByCounty";
 
-const Country = () => {
+const Country = ( { setTooltipContent } ) => {
 
   const [countryData, setcountryData] = useState(null);
   useEffect(()=>{
@@ -52,7 +51,13 @@ if (countryData) {
   return (
     <>
       <div className="country">
-        <div> Contentttttt</div>
+        {
+        (!countryData.NAME ) 
+          ? (
+          <USMapByCounty setTooltipContent={setTooltipContent} />
+          ) : 
+          null
+        }
       </div>
     </>
   );
