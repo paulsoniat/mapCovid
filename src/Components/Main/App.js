@@ -4,13 +4,13 @@ import ProjectRouter from '../Router/ProjectRouter';
 import { Router } from 'react-router-dom';
 import history from '../../utils/history';
 import '../Navbar/Navbar';
+import MapChart from '../Map/MapChart';
 
 import "../../index.css";
 import Navbar from "../Navbar/Navbar";
 
 function App() {
   const [content, setContent] = useState("");
-  console.log(content, 'this is content')
   return (
     <div>
       <Navbar />

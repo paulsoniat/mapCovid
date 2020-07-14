@@ -64,6 +64,11 @@ const MapChart = ({ setTooltipContent, display }) => {
 const h = window.innerHeight - 60
 || document.documentElement.clientHeight -60
 || document.body.clientHeight - 60;
+
+const w = window.innerHeight
+|| document.documentElement.clientHeight
+|| document.body.clientHeight
+console.log(w);
   const colorPicker = (newCases) => {
 
     let color;
