@@ -24,4 +24,7 @@ svg {
   border-radius: .5rem;
   opacity: 1 !important;
   width: 25vw !important;
+  @media only screen and (max-width: 550px) {
+    width: 25vw !important;
+  }
 }
