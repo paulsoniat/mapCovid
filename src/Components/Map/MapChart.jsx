@@ -13,9 +13,13 @@ import MapHover from './MapHover';
 import BacteriaLoader from '../Loaders/BacteriaLoader'
 
 import history from '../../utils/history';
+import TextModal from '../Modal/TextModal'
+
+//TODO: Break out into redux and set up store
 
 const MapChart = ({ setTooltipContent, display }) => {
-
+  
+  const [modalDisplay, setModalDisplay] = useState(true);
   const [yearlyData, setYearlyData] = useState(null);
   
   useEffect(()=>{
@@ -96,7 +100,17 @@ const h = window.innerHeight - 60
     }
     return color;
   }
+  const modalHeaderText = "Welcome to the Covid-19 Dashboard";
+  const modalBodyText = "Hover over a country to display latest data about the country's Covid situation. Click on a country to dive deeper into the country's numbers. You can support the site by buying me a coffee and connect with me on LinkedIn"
+  const handleModalClose = () => {
+    setModalDisplay(!modalDisplay)
+  }
 
+  if (modalDisplay) {
+       return (
+        <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
+      )
+  }
   if (display === "none") {
     return (
       null
@@ -104,6 +118,11 @@ const h = window.innerHeight - 60
   } else {
     return (
       <>
+      {
+      (modalDisplay) ? (
+        <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
+      ) : null
+      }
       {
         (yearlyData && yearlyData.arcs)
           ? (

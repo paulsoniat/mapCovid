@@ -3,7 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 import MapChart from '../Map/MapChart';
 import Country from '../Country/Country'
 import USMapByCounty from '../Map/USMapByCounty';
-import County from '../County/County';
+import State from '../State/State';
+import stateTableColumns from '../../utils/stateTableColumns';
 
 const ProjectRouter = ({
   setTooltipContent,
@@ -19,8 +20,8 @@ const ProjectRouter = ({
         render={() => <USMapByCounty setTooltipContent={setTooltipContent} />}
       />
       <Route
-        path={`/county/:name`}
-        render={() => <County />}
+        path={`/state/:name`}
+        render={() => <State />}
       />
       <Route
         path={`/`}

@@ -86,7 +86,7 @@ const UsMapByCountry = ({ setToolTip }) => {
                   fill="#DDD"
                   onClick={() => {
                       console.log(geo)
-                      history.push(`/county/${geo.properties.name}`);
+                      history.push(`/state/${geo.properties.name}`);
                   }}
                   style={{
                         default: {
@@ -158,10 +158,10 @@ const UsMapByCountry = ({ setToolTip }) => {
                   geography={geo}
                   fill="#DDD"
                   onClick={() => {
-                      history.push(`/county/${geo.properties.name}`);
+                    history.push(`/state/${geo.properties.name}`);
                   }}
                   onMouseEnter={() => {
-                    history.push(`/county/${geo.properties.NAME}`);
+                    history.push(`/state/${geo.properties.name}`);
                   }}
                   style={{
                         default: {

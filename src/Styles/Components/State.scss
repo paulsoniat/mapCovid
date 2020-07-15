@@ -1,0 +1,50 @@
+.scoutingreportsgamereferences {
+    padding-top: 1rem;
+    margin: 2.5rem 0rem;
+    overflow-x: auto;
+  
+    &__table {
+      width: 100%;
+      border: black;
+      background: whitesmoke;
+      white-space: nowrap;
+      border-collapse: collapse;
+      font-size: 1rem;
+      overflow: hidden;
+      @media print {
+        font-size: 1.2rem;
+      }
+    }
+  
+    &__header {
+      background-color: red;
+      color: whitesmoke;
+      font-weight: 500;
+      text-transform: uppercase;
+  
+      &-cell {
+        padding: .5rem;
+      }
+    }
+  
+    &__body {
+      color: black;
+  
+      &-row {
+        border-bottom: red;
+  
+        &:nth-child(2n) {
+          background-color: darkgray;
+        }
+      }
+  
+      &-cell {
+        border: black;
+        padding: 1.25rem;
+        text-align: center;
+        @media print {
+          padding: .5rem !important;
+        }
+      }
+    }
+  }
