@@ -1,3 +1,5 @@
+import stateDateFormatter from './stateDateFormatter.js';
+
 const stateCountyColumns = [{
     Header: 'County',
     accessor: 'county_name',
@@ -19,7 +21,7 @@ const stateCountyColumns = [{
   },
   {
     Header: 'Update Time',
-    accessor: 'last_update',
+    accessor: (d) => stateDateFormatter(d.last_update),
   }];
   
   export default stateCountyColumns;
