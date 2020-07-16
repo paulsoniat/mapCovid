@@ -1,0 +1,26 @@
+.country-container {
+    display: flex;
+    min-height: 93vh;
+    background-color: yellow;
+    flex-wrap: wrap;
+}
+
+.country-column {
+    background-color: royalblue;
+    width: 50vw;
+}
+
+.country-quarter-display {
+    background-color: royalblue;
+    width: 50vw;
+    height: 30vh;
+}
+
+.country-full-half {
+
+}
+.country-table {
+    background-color: green;
+    flex: 1 100%;
+    height: 33vh;
+}

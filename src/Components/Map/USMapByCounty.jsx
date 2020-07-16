@@ -95,7 +95,7 @@ const UsMapByCountry = ({ setToolTip }) => {
                     console.log(allData);
                     setTimeout(() => {
                         setStateData(allData);
-                      }, 1500)
+                      }, 1000)
                 })
             })
         }
@@ -106,7 +106,7 @@ const UsMapByCountry = ({ setToolTip }) => {
         return (
             <>
               <MediaQuery minDeviceWidth={1224}>
-                  <Legend />
+                  <Legend loaded={stateData} />
               <ComposableMap projection="geoAlbersUsa"
               height={h}
               className="US-map-chart" 

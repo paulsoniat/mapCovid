@@ -3,6 +3,7 @@ import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import USMapByCounty from "../Map/USMapByCounty";
 import { useParams } from 'react-router-dom';
+import OtherCountry from './OtherCounty';
 
 const Country = ( { setTooltipContent } ) => {
 
@@ -43,9 +44,7 @@ const Country = ( { setTooltipContent } ) => {
           })
           const allGeoData = geoUrlRes
           geoUrl = allGeoData;
-          setTimeout(() => {
             setcountryData(geoUrl);
-          }, 1000)
         })
       })
     }
@@ -54,15 +53,13 @@ const Country = ( { setTooltipContent } ) => {
 if (countryData) {
   return (
     <>
-      <div className="country">
         {
         (name === 'United States of America') 
           ? (
           <USMapByCounty setTooltipContent={setTooltipContent} />
           ) : 
-          <div> Another country  </div>
+          <OtherCountry />
         }
-      </div>
     </>
   );
 }
