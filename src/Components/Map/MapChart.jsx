@@ -63,6 +63,8 @@ const MapChart = ({ setTooltipContent, display }) => {
     }
   }, [yearlyData]);
 
+  console.log(yearlyData)
+
 
 
 const h = window.innerHeight - 60

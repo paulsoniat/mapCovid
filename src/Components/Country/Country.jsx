@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import USMapByCounty from "../Map/USMapByCounty";
+import { useParams } from 'react-router-dom';
 
 const Country = ( { setTooltipContent } ) => {
 
   const [countryData, setcountryData] = useState(null);
+  const { name } = useParams();
+  console.log(name);
+
   useEffect(()=>{
     if(!countryData) {
       let countries;
@@ -52,11 +56,11 @@ if (countryData) {
     <>
       <div className="country">
         {
-        (!countryData.NAME ) 
+        (name === 'United States of America') 
           ? (
           <USMapByCounty setTooltipContent={setTooltipContent} />
           ) : 
-          null
+          <div> Another country  </div>
         }
       </div>
     </>

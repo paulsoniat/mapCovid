@@ -12,7 +12,7 @@ const ProjectRouter = ({
   <>
     <Switch>
       <Route
-        path={`/country/:id`}
+        path={`/country/:name`}
         render={() => <Country setTooltipContent={setTooltipContent} setrootPath={`/Country`} />}
       />
       <Route
