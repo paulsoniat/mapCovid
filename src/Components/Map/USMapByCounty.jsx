@@ -13,6 +13,7 @@ import stateDictionary from '../../utils/Data/stateDictionary';
 import MediaQuery from 'react-responsive';
 import axios from 'axios';
 import BacteriaLoader from "../Loaders/BacteriaLoader";
+import Legend from '../Legend/Legend'
 
 const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -105,7 +106,7 @@ const UsMapByCountry = ({ setToolTip }) => {
         return (
             <>
               <MediaQuery minDeviceWidth={1224}>
-        
+                  <Legend />
               <ComposableMap projection="geoAlbersUsa"
               height={h}
               className="US-map-chart" 
@@ -176,7 +177,7 @@ const UsMapByCountry = ({ setToolTip }) => {
               </MediaQuery>
         
               <MediaQuery maxDeviceWidth={1224}>
-        
+                <Legend />
               <ComposableMap projection="geoAlbersUsa"
               height={h}
               className="US-map-chart" 
