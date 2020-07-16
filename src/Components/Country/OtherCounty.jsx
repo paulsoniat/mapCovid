@@ -2,12 +2,19 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import { useParams } from 'react-router-dom';
+import News from '../News/News.jsx';
+import CountryTable from '../Tables/CountryTable.jsx';
+import stateCountyColumns from '../../utils/stateCountyColumns'
 
-const Country = ( { rootPath } ) => {
+const OtherCountry = ( { rootPath } ) => {
 
   const { name } = useParams();
 
   useEffect(()=>{
+    axios.get('https://api.thevirustracker.com/free-api?countryTotal=US')
+    .then((res) => {
+      console.log(res);
+    })
   });
 
 if (name) {
@@ -15,19 +22,19 @@ if (name) {
     <>
       <div className="country-container">
           <div className="country-table">
-            Table here
+            
           </div>
         <div className="country-column">
             <div className="country-quarter-display">
-                quarter
+                Stat Chart
             </div>
             <div className="country-quarter-display">
-                quarter
+                Statistic Chart
             </div>
         </div>
         <div className="country-column">
             <div className="country-full-half">
-                half
+                <News />
             </div>
         </div>
       </div>
@@ -41,4 +48,4 @@ else {
 }
 };
 
-export default Country;
+export default OtherCountry;

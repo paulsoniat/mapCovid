@@ -3,6 +3,8 @@
     min-height: 93vh;
     background-color: yellow;
     flex-wrap: wrap;
+    text-align: center;
+    position: sticky;
 }
 
 .country-column {
@@ -17,7 +19,10 @@
 }
 
 .country-full-half {
-
+    background-color: lightgrey;
+    width: 50vw;
+    height: 60vh;
+    overflow-y: hidden;
 }
 .country-table {
     background-color: green;
