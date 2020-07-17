@@ -4,7 +4,6 @@
     background-color: yellow;
     flex-wrap: wrap;
     text-align: center;
-    position: sticky;
 }
 
 .country-column {
@@ -14,8 +13,17 @@
 
 .country-quarter-display {
     background-color: royalblue;
-    width: 50vw;
-    height: 30vh;
+    height: 50%;
+    &-sticky{
+        background-color: red;
+        height: 30vh;
+        box-sizing: border-box;
+    }
+}
+
+.column-container{
+    display: flex;
+    flex: 1;
 }
 
 .country-full-half {

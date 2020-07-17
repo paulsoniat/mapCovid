@@ -20,6 +20,11 @@ svg {
   overflow: visible !important;
 }
 
+.main{
+  display: flex;
+  flex-direction: column;
+}
+
 .tooltip {
   border-radius: .5rem;
   opacity: 1 !important;

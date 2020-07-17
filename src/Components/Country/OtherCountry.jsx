@@ -24,11 +24,12 @@ if (name) {
           <div className="country-table">
             
           </div>
+    <div className="column-container">
         <div className="country-column">
             <div className="country-quarter-display">
                 Stat Chart
             </div>
-            <div className="country-quarter-display">
+            <div className="country-quarter-display-sticky">
                 Statistic Chart
             </div>
         </div>
@@ -37,6 +38,7 @@ if (name) {
                 <News />
             </div>
         </div>
+    </div>
       </div>
     </>
   );

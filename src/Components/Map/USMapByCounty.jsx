@@ -37,25 +37,13 @@ if (newCases > 10000) {
     color = "#ff0000";
   }
   if (newCases <= 10000 & newCases >= 5000) {
-    color = "#ff1919";
-  }
-  if (newCases <= 5000 & newCases >=  2500) {
     color = "#ff3232";
   }
-  if (newCases <= 2500 & newCases >= 2000) {
-    color = "#ff4c4c";
+  if (newCases <= 5000 & newCases >= 1000) {
+    color = "#ff4c4c"
   }
-  if (newCases <= 2000 & newCases >= 1500) {
-    color = "#ff6666"
-  }
-  if (newCases <= 1500 & newCases >= 1000) {
-    color = "#ff7f7f"
-  }
-  if (newCases <= 1000 & newCases >= 500) {
+  if (newCases <= 1000 & newCases >= 250) {
     color = "#ff9999"
-  }
-  if (newCases <= 500 & newCases >= 250) {
-    color = "#ffb2b2"
   }
   if (newCases <= 250 || newCases === undefined) {
     color = "#ffcccc"
@@ -92,7 +80,6 @@ const UsMapByCountry = ({ setToolTip }) => {
                         })
                     })
                     allData.data.objects.states.geometries = mapData;
-                    console.log(allData);
                     setTimeout(() => {
                         setStateData(allData);
                       }, 1000)
@@ -183,7 +170,7 @@ const UsMapByCountry = ({ setToolTip }) => {
               className="US-map-chart" 
               data-tip="">
         
-                <Geographies geography={geoUrl}>
+                <Geographies geography={stateData.data}>
                   {({ geographies }) => (
                     <>
                       {geographies.map(geo => (
@@ -201,7 +188,7 @@ const UsMapByCountry = ({ setToolTip }) => {
                           }}
                           style={{
                                 default: {
-                                  fill: `${colorPicker(1500)}`,
+                                  fill: `${colorPicker(geo.properties.positiveIncrease)}`,
                                   stroke: "#191919",
                                   outline: 'none',
                                 },

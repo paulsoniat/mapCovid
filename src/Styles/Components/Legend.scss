@@ -59,11 +59,6 @@ dt {
         width: 5rem;
         height: 1rem;
     }
-    
-    dd {
-    width: 15em;
-    margin: 0 0 0 1em;
-    }
 dl {
     display: flex;
     max-width: 100%;
@@ -71,6 +66,7 @@ dl {
     margin: 0rem 2.5rem 1rem 2.5rem;
     padding: .5rem;
     overflow: auto;
+    justify-content: space-around;
 }
 
 .legendText {
@@ -86,4 +82,8 @@ dl {
     color: whitesmoke;
     font-weight: bold;
     padding: .5rem;
+}
+
+.legend-text-container{
+    text-align: center;
 }

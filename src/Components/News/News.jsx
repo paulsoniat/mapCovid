@@ -40,7 +40,6 @@ if (newsData) {
                   </div>
                 )
               })}
-              Scroll Down
             </div>
       </div>
     </>
@@ -49,7 +48,7 @@ if (newsData) {
 else {
   return (
     <div>
-      Loading...
+      Loading News...
     </div>
   )
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import USMapByCounty from "../Map/USMapByCounty";
 import { useParams } from 'react-router-dom';
-import OtherCountry from './OtherCounty';
+import OtherCountry from './OtherCountry';
 
 const Country = ( { setTooltipContent } ) => {
 
