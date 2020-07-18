@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 
-const StateTable = ({
+const CountryTable = ({
   columns,
   data
 }) => {
@@ -115,4 +115,4 @@ const StateTable = ({
 }
 };
 
-export default StateTable;
+export default CountryTable;
