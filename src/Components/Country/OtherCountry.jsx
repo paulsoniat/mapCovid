@@ -6,48 +6,44 @@ import News from '../News/News.jsx';
 import CountryTable from '../Tables/CountryTable.jsx';
 import stateCountyColumns from '../../utils/stateTableColumns'
 import CountryGraphOverTime from './CountryGraphOverTime';
+import countryDictionary from '../../utils/Data/countryDictionary';
+import Country from "../News/News.jsx";
+import CountryStatChart from './CountryStatChart';
 
 const OtherCountry = ( { rootPath } ) => {
 
   const { name } = useParams();
   const [countryData, setCountryData] = useState(null);
-  let [allDataOverTime, setAllDataOverTime] = useState(null);
+  const [allDataOverTime, setAllDataOverTime] = useState(null);
+  const [countryCode, setCountryCode] = useState(null);
+
   useEffect(()=>{
 
     if (!countryData && !allDataOverTime) {
-      axios.get('https://api.thevirustracker.com/free-api?countryTotal=US')
-      .then((res) => {
-        console.log(res.data)
-        setCountryData([
-          {
-             "info":{
-            "ourid":167,
-            "title":"USA",
-            "code":"US",
-            "source":"https://thevirustracker.com/usa-coronavirus-information-us"
-             },
-             "total_cases":3771101,
-             "total_recovered":1741626,
-             "total_unresolved":0,
-             "total_deaths":142080,
-             "total_new_cases_today":1089,
-             "total_new_deaths_today":16,
-             "total_active_cases":393,
-             "total_serious_cases":1887395,
-             "total_danger_rank":1}]);
-      })
+
+      for (const country in countryDictionary) {
+        
+        if (name === countryDictionary[country]){
+          console.log(country);
+          setCountryCode(country);
+          console.log(countryCode, 'couintry code!@!@#!@#')
+        }
+      }
+
+      
       axios.get(`https://corona.lmao.ninja/v2/historical/${name}?lastdays=90`)
     .then((res) => {
         const timelineData = res.data.timeline;
-        allDataOverTime = [];
-        allDataOverTime = Object.keys(res.data.timeline.cases);
-        allDataOverTime = allDataOverTime.reduce((seed, key) => {
+        let everyFifthDay = allDataOverTime;
+        everyFifthDay = [];
+        everyFifthDay = Object.keys(res.data.timeline.cases);
+        everyFifthDay = everyFifthDay.reduce((seed, key) => {
             
             seed.push({'day': key}); 
             return seed; 
         }, [])
         console.log(timelineData)
-        allDataOverTime = allDataOverTime.map((key) => {
+        everyFifthDay = everyFifthDay.map((key) => {
             for (const caseData in timelineData.cases) {
                 if (caseData === key.day) {
                     key.cases = timelineData.cases[key.day]
@@ -55,12 +51,29 @@ const OtherCountry = ( { rootPath } ) => {
             }
             for (const deathData in timelineData.deaths) {
               if (deathData === key.day) {
+                /*
+                  key.day = key.day.slice(0, -3)
+                  console.log(typeof(key.day), key.day)*/
                   key.deaths = timelineData.deaths[key.day]
               }
           }
             return key;
         });
-        setAllDataOverTime(allDataOverTime)
+        everyFifthDay.forEach((day, index) => {
+          if (index % 5 === 0) {
+            everyFifthDay.push(day);
+          }
+        })
+        setAllDataOverTime(everyFifthDay)
+    })
+    .then(() => {
+      axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
+      .then((res) => {
+        let countryStatisticsResults;
+        res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
+        console.log(res.data.countrydata, 'this is data')
+        setCountryData(countryStatisticsResults);
+      });
     })
     }
   });
@@ -75,7 +88,7 @@ if (name && countryData && allDataOverTime) {
     <div className="column-container">
         <div className="country-column">
             <div className="country-quarter-display">
-                Stat Chart
+                <CountryStatChart data={countryData} />
             </div>
             <div className="country-quarter-display-sticky">
                 <CountryGraphOverTime data={allDataOverTime}/>
