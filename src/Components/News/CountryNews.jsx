@@ -12,7 +12,7 @@ const CountryNews = ( { newsData } ) => {
               'Subscription-Key': '3009d4ccc29e4808af1ccc25c69b4d5d' 
             }
           }
-        axios.get(`https://api.smartable.ai/coronavirus/news/${'US'}`, config)
+        axios.get(`https://api.smartable.ai/coronavirus/news/${'global'}`, config)
         .then((res) => {
           setAltData(res.data.news);
         })

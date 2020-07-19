@@ -21,7 +21,7 @@ const OtherCountry = ( { rootPath } ) => {
 
   useEffect(()=>{
 
-    if (!countryData && !allDataOverTime && !newsData) {
+    if (!countryData && allDataOverTime !== 'none' && !newsData) {
 
       for (const country in countryDictionary) {
         
@@ -31,69 +31,91 @@ const OtherCountry = ( { rootPath } ) => {
       }
 
       if (!allDataOverTime) {
-        axios.get(`https://corona.lmao.ninja/v2/historical/${name}?lastdays=90`)
-      .then((res, err) => {
-        if (err) {
-          setAllDataOverTime('none')
-        }
-          const timelineData = res.data.timeline;
-          let everyFifthDay = allDataOverTime;
-          everyFifthDay = [];
-          everyFifthDay = Object.keys(res.data.timeline.cases);
-          everyFifthDay = everyFifthDay.reduce((seed, key) => {
-              const day = key.slice(0, -3)
-              seed.push({'day': key}); 
-              return seed; 
-          }, []);
-          everyFifthDay = everyFifthDay.map((key) => {
-              for (const caseData in timelineData.cases) {
-                  if (caseData === key.day) {
-                      key.cases = timelineData.cases[key.day]
-                  }
+        if (allDataOverTime !== 'none') {
+
+          try {
+            console.log(name, 'nombrecita')
+            let countryShortCode;
+            for (const country in countryDictionary) {
+        
+              if (name === countryDictionary[country]){
+                countryShortCode = country;
               }
-              for (const deathData in timelineData.deaths) {
-                if (deathData === key.day) {
-                  /*
-                    key.day = key.day.slice(0, -3)
-                    console.log(typeof(key.day), key.day)*/
-                    key.deaths = timelineData.deaths[key.day]
+            }
+            axios.get(`https://corona.lmao.ninja/v2/historical/${countryShortCode}?lastdays=90`)
+          .then((res, err) => {
+              const timelineData = res.data.timeline;
+              let everyFifthDay = allDataOverTime;
+              everyFifthDay = [];
+              everyFifthDay = Object.keys(res.data.timeline.cases);
+              everyFifthDay = everyFifthDay.reduce((seed, key) => {
+                  const day = key.slice(0, -3)
+                  seed.push({'day': key}); 
+                  return seed; 
+              }, []);
+              everyFifthDay = everyFifthDay.map((key) => {
+                  for (const caseData in timelineData.cases) {
+                      if (caseData === key.day) {
+                          key.cases = timelineData.cases[key.day]
+                      }
+                  }
+                  for (const deathData in timelineData.deaths) {
+                    if (deathData === key.day) {
+                      /*
+                        key.day = key.day.slice(0, -3)
+                        console.log(typeof(key.day), key.day)*/
+                        key.deaths = timelineData.deaths[key.day]
+                    }
                 }
-            }
-              return key;
-          });
-          const correctDays = []
-          everyFifthDay.forEach((day, index) => {
-            if (index % 5 === 0) {
-              correctDays.push(day);
-            }
+                  return key;
+              });
+              const correctDays = []
+              everyFifthDay.forEach((day, index) => {
+                if (index % 5 === 0) {
+                  correctDays.push(day);
+                }
+              })
+              console.log(correctDays);
+              setAllDataOverTime(correctDays)
           })
-          console.log(correctDays);
-          setAllDataOverTime(correctDays)
-      })
-      .then(() => {
-        axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
-        .then((res) => {
-          let countryStatisticsResults;
-          res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
-          setCountryData(countryStatisticsResults);
-        }).then(()=> {
-          let config = {
-            headers : {
-              'Subscription-Key': '3009d4ccc29e4808af1ccc25c69b4d5d' 
-            }
-          }
-          if (countryCode) {
-            axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
+          .catch((err) =>{
+              setAllDataOverTime('none')
+            console.log(err, 'this be error 192839183298')
+            console.log(allDataOverTime)
+          })
+          .then(() => {
+            axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
             .then((res) => {
-              setNewsData(res.data.news);
+              let countryStatisticsResults;
+              res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
+              setCountryData(countryStatisticsResults);
+            }).then(()=> {
+              let config = {
+                headers : {
+                  'Subscription-Key': '3009d4ccc29e4808af1ccc25c69b4d5d' 
+                }
+              }
+              if (countryCode) {
+                axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
+                .then((res) => {
+                  setNewsData(res.data.news);
+                })
+                .catch((err) => {
+                  setNewsData([])
+                  console.log(newsData, 'this is news data')
+                })
+              }
+            })
             })
           }
-        })
-        })
+          catch(err) {
+            setAllDataOverTime('none');
+          }
+        }
       }
     }
   });
-
+console.log(allDataOverTime, '102 all data')
 if (name && countryData && allDataOverTime && newsData) {
   return (
     <>
@@ -107,12 +129,12 @@ if (name && countryData && allDataOverTime && newsData) {
                 <CountryStatChart data={countryData} />
             </div>
             <div className="country-quarter-display-sticky">
-              {allDataOverTime.length ? (
-                <CountryGraphOverTime data={allDataOverTime}/>
-              ) : 
-                <div>
-                  Can't retrieve data at this time
-                </div>}
+              {allDataOverTime !== 'none' ? (
+                  <CountryGraphOverTime data={allDataOverTime}/>
+                ) : 
+                  <div>
+                    Can't retrieve data at this time
+                  </div>}
             </div>
         </div>
         <div className="country-column">
