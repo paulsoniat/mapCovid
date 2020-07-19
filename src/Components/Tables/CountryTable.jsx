@@ -42,10 +42,10 @@ const CountryTable = ({
     <>
        <table {...getTableProps()}>
         <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+          {headerGroups.map((headerGroup, i) => (
+            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, i) => (
+                <th key={i} {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
             </tr>
           ))}
@@ -54,9 +54,9 @@ const CountryTable = ({
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              <tr key={i} {...row.getRowProps()}>
+                {row.cells.map((cell, i) => {
+                  return <td key={i} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
               </tr>
             )
@@ -103,7 +103,7 @@ const CountryTable = ({
           }}
         >
           {[3, 7, 15].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
+            <option key={Math.random()} value={pageSize}>
               Show {pageSize}
             </option>
           ))}

@@ -18,14 +18,9 @@ import useResizeObserver from "./useResizeObserver";
 
 
 const StackedBarChart = ({data}) => {
-
-
-    const { name } = useParams();
-    let allData = [];
     
     const svgRef = useRef();
     const wrapperRef = useRef();
-    console.log(wrapperRef)
     const dimensions = useResizeObserver(wrapperRef);
   
     let allKeys = ["cases", "deaths"];

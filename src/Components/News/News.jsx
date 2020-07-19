@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-import BacteriaLoader from '../Loaders/BacteriaLoader';
 import { useParams } from 'react-router-dom';
-import News from '../News/News.jsx';
 
-const Country = ( { rootPath } ) => {
+const News = ( { rootPath } ) => {
 
   const [newsData, setNewsData] = useState(null);
 
@@ -45,13 +43,6 @@ if (newsData) {
     </>
   );
 }
-else {
-  return (
-    <div>
-      Loading News...
-    </div>
-  )
-}
 };
 
-export default Country;
+export default News;

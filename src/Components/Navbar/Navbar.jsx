@@ -17,7 +17,7 @@ const Navbar = () => {
             <div className="menu-items">
               <li className="menu-item">
                 <a href="#about" onClick={() => {console.log('clicked home')}}>
-                  Menu Dropdown tbd
+                  Menu
                 </a>
               </li>
               <li className="menu-item">

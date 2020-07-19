@@ -8,10 +8,21 @@ const CountryTable = ({
   if (data) {
   return (
     <>
-    {data.map((item) => {
-        return <div>
-           { item.total_active_cases} item thing here 
-
+    {data.map((item, index) => {
+        if (item === 'none') {
+            return <div key={index}>
+                The data could not be pulled for these statistics
+            </div>
+        }
+        return <div key={index}>
+           { item.total_cases} Total Cases
+           <br/>
+           { item.total_deaths} Total Deaths 
+           <br/>
+           { item.total_recovered} Total Recovered
+           <br/>
+           { item.total_serious_cases} Serious Cases
+           <br/>
         </div>
     })}
     </>
