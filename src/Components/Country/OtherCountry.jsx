@@ -39,7 +39,6 @@ const OtherCountry = ( { rootPath } ) => {
           everyFifthDay = Object.keys(res.data.timeline.cases);
           everyFifthDay = everyFifthDay.reduce((seed, key) => {
               const day = key.slice(0, -3)
-              console.log(typeof(day), day, key);
               seed.push({'day': key}); 
               return seed; 
           }, []);
@@ -62,7 +61,6 @@ const OtherCountry = ( { rootPath } ) => {
           const correctDays = []
           everyFifthDay.forEach((day, index) => {
             if (index % 5 === 0) {
-              console.log(index, day)
               correctDays.push(day);
             }
           })
@@ -84,10 +82,12 @@ const OtherCountry = ( { rootPath } ) => {
               'Subscription-Key': '3009d4ccc29e4808af1ccc25c69b4d5d' 
             }
           }
-          axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode ? countryCode : 'US'}`, config)
-          .then((res) => {
-            setNewsData(res.data.news);
-          })
+          if (countryCode) {
+            axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
+            .then((res) => {
+              setNewsData(res.data.news);
+            })
+          }
         })
         })
       }
@@ -118,7 +118,7 @@ if (name && countryData && allDataOverTime && newsData) {
         <div className="country-column">
             <div className="country-full-half">
             {newsData !== null ? ( 
-                <CountryNews newsData={newsData}/>
+                <CountryNews newsData={newsData} country={name}/>
               ) : 
                 <div>
                   Can't retrieve data at this time
