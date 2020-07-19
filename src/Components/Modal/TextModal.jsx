@@ -1,5 +1,6 @@
 import React from 'react';
 import closeIcon from '../../Assets/close-icon.svg';
+import ReactHtmlParser from 'react-html-parser';
 
 const TextModal = ({
   handleClose, displayText, textPrompt,
@@ -15,7 +16,14 @@ const TextModal = ({
         </div>
       </div>
       <div className="generic-text-modal__section">
-        {textPrompt}
+        {textPrompt.map((text, index) => {
+          return (
+            <div className="generic-text-modal__section-text">{ReactHtmlParser(text)}</div>
+          )
+        })}
+        <div className="generic-text-modal__button-container">
+          <div className="generic-text-modal__button-accept" onClick={handleClose} > Enter!</div>
+        </div>
       </div>
     </div>
   </div>

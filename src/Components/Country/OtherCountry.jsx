@@ -71,7 +71,7 @@ const OtherCountry = ( { rootPath } ) => {
               });
               const correctDays = []
               everyFifthDay.forEach((day, index) => {
-                if (index % 5 === 0) {
+                if (index % 10 === 0) {
                   correctDays.push(day);
                 }
               })
