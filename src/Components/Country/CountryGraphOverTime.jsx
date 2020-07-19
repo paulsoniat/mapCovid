@@ -18,6 +18,8 @@ import useResizeObserver from "./useResizeObserver";
 
 
 const StackedBarChart = ({data}) => {
+
+    console.log(data, 'data in graph1923891381298')
     
     const svgRef = useRef();
     const wrapperRef = useRef();

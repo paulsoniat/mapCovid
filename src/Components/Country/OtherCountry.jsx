@@ -32,7 +32,10 @@ const OtherCountry = ( { rootPath } ) => {
 
       if (!allDataOverTime) {
         axios.get(`https://corona.lmao.ninja/v2/historical/${name}?lastdays=90`)
-      .then((res) => {
+      .then((res, err) => {
+        if (err) {
+          setAllDataOverTime('none')
+        }
           const timelineData = res.data.timeline;
           let everyFifthDay = allDataOverTime;
           everyFifthDay = [];
@@ -66,9 +69,6 @@ const OtherCountry = ( { rootPath } ) => {
           })
           console.log(correctDays);
           setAllDataOverTime(correctDays)
-      }).catch((err) => {
-        console.log(err);
-        setAllDataOverTime('none')
       })
       .then(() => {
         axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
@@ -107,7 +107,7 @@ if (name && countryData && allDataOverTime && newsData) {
                 <CountryStatChart data={countryData} />
             </div>
             <div className="country-quarter-display-sticky">
-              {allDataOverTime !== 'none' ? (
+              {allDataOverTime.length ? (
                 <CountryGraphOverTime data={allDataOverTime}/>
               ) : 
                 <div>
