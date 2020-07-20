@@ -16,7 +16,8 @@ const countryNameDictionary = {
     "Dominican Rep.": "Dominican Republic",
     "Puerto Rico": "United States of America",
     "Venezuela": "Venezuela (Bolivarian Republic)",
-    "Central African Rep.": "Central African Republic"
+    "Central African Rep.": "Central African Republic",
+    "W. Sahara": "Western Sahara",
 }
 
 export default countryNameDictionary;

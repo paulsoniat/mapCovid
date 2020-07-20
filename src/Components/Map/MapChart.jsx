@@ -61,6 +61,7 @@ const MapChart = ({ setTooltipContent, display }) => {
                 geoCountry.properties.totalRecovered = country.TotalRecovered
               }
               else {
+
               }
             })
           })
