@@ -1,7 +1,6 @@
 dt {
     width: .25rem;
     height: .25rem;
-    overflow: hidden;
     border: 1px solid #000;
     min-width: 1rem;
     }
@@ -67,6 +66,9 @@ dl {
     padding: .5rem;
     overflow: auto;
     justify-content: space-around;
+    @media only screen and (max-width: 750px) {
+        justify-content: space-between;
+    }
 }
 
 .legendText {

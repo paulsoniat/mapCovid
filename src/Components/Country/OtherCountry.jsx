@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import { useParams } from 'react-router-dom';
-import News from '../News/News.jsx';
 import CountryTable from '../Tables/CountryTable.jsx';
 import stateCountyColumns from '../../utils/stateTableColumns'
 import CountryGraphOverTime from './CountryGraphOverTime';
@@ -48,7 +47,7 @@ const OtherCountry = ( { rootPath } ) => {
               everyFifthDay = [];
               everyFifthDay = Object.keys(res.data.timeline.cases);
               everyFifthDay = everyFifthDay.reduce((seed, key) => {
-                  const day = key.slice(0, -3)
+                  // const day = key.slice(0, -3)
                   seed.push({'day': key}); 
                   return seed; 
               }, []);
@@ -60,9 +59,6 @@ const OtherCountry = ( { rootPath } ) => {
                   }
                   for (const deathData in timelineData.deaths) {
                     if (deathData === key.day) {
-                      /*
-                        key.day = key.day.slice(0, -3)
-                        console.log(typeof(key.day), key.day)*/
                         key.deaths = timelineData.deaths[key.day]
                     }
                 }
@@ -109,7 +105,7 @@ const OtherCountry = ( { rootPath } ) => {
         }
       }
     }
-  });
+  }, [countryData, allDataOverTime, newsData, name, countryCode]);
 if (name && countryData && allDataOverTime && newsData) {
   return (
     <>

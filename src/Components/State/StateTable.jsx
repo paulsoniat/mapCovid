@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import { useTable, usePagination } from 'react-table';
-import { useParams } from 'react-router-dom';
-import axios from 'axios'
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 
 const StateTable = ({

@@ -4,7 +4,6 @@ import MapChart from '../Map/MapChart';
 import Country from '../Country/Country'
 import USMapByCounty from '../Map/USMapByCounty';
 import State from '../State/State';
-import stateTableColumns from '../../utils/stateTableColumns';
 
 const ProjectRouter = ({
   setTooltipContent,

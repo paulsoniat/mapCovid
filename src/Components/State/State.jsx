@@ -1,11 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import PropTypes from 'prop-types';
-import { useTable } from 'react-table';
 import { useParams } from 'react-router-dom';
 import axios from 'axios'
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import StateTable from './StateTable';
-import stateDictionary from '../../utils/Data/stateDictionary';
 import stateCountyColumns from '../../utils/stateCountyColumns';
 
 const State = () => {
@@ -25,7 +22,7 @@ const State = () => {
         })
         setSelectedCounties(stateCounties);
       });
-  }, []);
+  });
   
     if (selectedCounties.length) {
       return (

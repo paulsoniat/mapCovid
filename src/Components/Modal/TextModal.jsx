@@ -18,7 +18,7 @@ const TextModal = ({
       <div className="generic-text-modal__section">
         {textPrompt.map((text, index) => {
           return (
-            <div className="generic-text-modal__section-text">{ReactHtmlParser(text)}</div>
+            <div key={index} className="generic-text-modal__section-text">{ReactHtmlParser(text)}</div>
           )
         })}
         <div className="generic-text-modal__button-container">

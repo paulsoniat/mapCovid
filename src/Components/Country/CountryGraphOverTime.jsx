@@ -1,6 +1,5 @@
 
   import React, { useEffect, useRef, useState } from "react";
-  import { useParams } from 'react-router-dom';
   import {
       select,
       axisBottom,
@@ -33,7 +32,7 @@ const colors = {
   "deaths": "black",
 };
 
-const [keys, setKeys] = useState(allKeys);
+const [keys] = useState(allKeys);
 /**
  * Component that renders a StackedBarChart
  */
@@ -92,7 +91,7 @@ const [keys, setKeys] = useState(allKeys);
 
       return (
         <React.Fragment>
-          <div ref={wrapperRef} style={{ marginBottom: "2rem", color:"black"}}>
+          <div ref={wrapperRef} style={{ padding:'1rem', width: '80%', color:"black"}}>
             <svg ref={svgRef}>
               <g className="x-axis" />
               <g className="y-axis" />

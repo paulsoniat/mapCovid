@@ -13,9 +13,7 @@ import stateDictionary from '../../utils/Data/stateDictionary';
 import MediaQuery from 'react-responsive';
 import axios from 'axios';
 import BacteriaLoader from "../Loaders/BacteriaLoader";
-import Legend from '../Legend/Legend'
-
-const geoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
+import Legend from '../Legend/Legend';
 
 const offsets = {
   VT: [50, -8],
@@ -62,7 +60,6 @@ const UsMapByCountry = ({ setToolTip }) => {
 
     useEffect (() => {
         if (!stateData) {
-            let returnData;
             axios.get('https://covidtracking.com/api/states')
             .then((stateResults) => {
                 axios.get('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')

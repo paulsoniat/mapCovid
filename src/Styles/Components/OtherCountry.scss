@@ -14,10 +14,13 @@
 .country-quarter-display {
     background-color: darkgray;
     height: 50%;
+    box-sizing: border-box;
     &-sticky{
         background-color: lightgray;
         height: 30vh;
         box-sizing: border-box;
+        display: flex;
+        padding: .5rem 3.5rem .5rem .5rem;
     }
 }
 
