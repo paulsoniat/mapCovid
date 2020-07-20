@@ -15,7 +15,12 @@
     background-color: darkgray;
     height: 50%;
     box-sizing: border-box;
+    @media only screen and (max-width: 750px) {
+        font-size: 70%;
+        overflow-y: auto;
+    }
     &-sticky{
+        overflow: hidden;
         background-color: lightgray;
         height: 30vh;
         box-sizing: border-box;
