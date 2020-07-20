@@ -29,12 +29,12 @@ const MapChart = ({ setTooltipContent, display }) => {
       let geoData;
       let geoUrlRes;
       let geoUrl;
-      axios.get('https://api.covid19api.com/summary')
+      axios.get('http://api.covid19api.com/summary')
       .then((res, err) => {
         countries = res.data.Countries;
       })
       .then(() => {
-        axios.get('https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json')
+        axios.get('http://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json')
         .then((res, err) => {
           geoUrlRes = res.data;
           geoData = res.data.objects.ne_110m_admin_0_countries.geometries;

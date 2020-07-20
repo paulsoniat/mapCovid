@@ -18,6 +18,10 @@ const countryNameDictionary = {
     "Venezuela": "Venezuela (Bolivarian Republic)",
     "Central African Rep.": "Central African Republic",
     "W. Sahara": "Western Sahara",
+    "S. Sudan": "South Sudan",
+    "Congo" : "Congo (Brazzaville)",
+    "Czechia": "Czech Republic",
+    "Syria": "Syrian Arab Republic (Syria)",
 }
 
 export default countryNameDictionary;
