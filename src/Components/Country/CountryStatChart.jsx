@@ -9,6 +9,7 @@ const CountryTable = ({
   return (
     <>
     {data.map((item, index) => {
+      console.log(item);
         if (item === 'none') {
             return <div key={index}>
                 The data could not be pulled for these statistics

@@ -9,7 +9,6 @@ const Country = ( { setTooltipContent } ) => {
 
   const [countryData, setcountryData] = useState(null);
   const { name } = useParams();
-  console.log(name);
 
   useEffect(()=>{
     if(!countryData) {

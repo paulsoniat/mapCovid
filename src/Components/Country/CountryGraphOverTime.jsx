@@ -18,8 +18,6 @@ import useResizeObserver from "./useResizeObserver";
 
 
 const StackedBarChart = ({data}) => {
-
-    console.log(data, 'data in graph1923891381298')
     
     const svgRef = useRef();
     const wrapperRef = useRef();
@@ -94,7 +92,7 @@ const [keys, setKeys] = useState(allKeys);
 
       return (
         <React.Fragment>
-          <div ref={wrapperRef} style={{ marginBottom: "2rem" }}>
+          <div ref={wrapperRef} style={{ marginBottom: "2rem", color:"black"}}>
             <svg ref={svgRef}>
               <g className="x-axis" />
               <g className="y-axis" />

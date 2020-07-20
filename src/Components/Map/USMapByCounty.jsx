@@ -67,7 +67,6 @@ const UsMapByCountry = ({ setToolTip }) => {
             .then((stateResults) => {
                 axios.get('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
                 .then((res) => {
-                    console.log(res);
                     const allData = res;
                     let mapData = res.data;
                     mapData = mapData.objects.states.geometries

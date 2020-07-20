@@ -1,21 +1,21 @@
 .country-container {
     display: flex;
     min-height: 93vh;
-    background-color: yellow;
+    background-color: darkgray;
     flex-wrap: wrap;
     text-align: center;
 }
 
 .country-column {
-    background-color: royalblue;
+    background-color: darkgray;
     width: 50vw;
 }
 
 .country-quarter-display {
-    background-color: royalblue;
+    background-color: darkgray;
     height: 50%;
     &-sticky{
-        background-color: red;
+        background-color: lightgray;
         height: 30vh;
         box-sizing: border-box;
     }
@@ -33,7 +33,7 @@
     overflow-y: hidden;
 }
 .country-table {
-    background-color: green;
+    background-color: gray;
     flex: 1 100%;
     height: 33vh;
     max-width: 100%;

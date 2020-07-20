@@ -16,7 +16,6 @@ const News = ( { rootPath } ) => {
     if (!newsData) {
       setNewsData(res.data);
     }
-    console.log(newsData)
   })
   });
 

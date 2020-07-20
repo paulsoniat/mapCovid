@@ -35,7 +35,8 @@ svg {
 }
 
 ::-webkit-scrollbar {
-  width: 20px;
+  width: 7.5px;
+  padding: 1rem;
 }
 
 /* Track */

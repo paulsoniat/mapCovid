@@ -9,14 +9,14 @@ const Navbar = () => {
     <div className="navbar">
         <ul>
             <li className="home">
-              <a href="/" onClick={() => {console.log('clicked home')}}>
+              <a href="/">
                 Home
               </a>
             </li>
 
             <div className="menu-items">
               <li className="menu-item">
-                <a href="#about" onClick={() => {console.log('clicked home')}}>
+                <a href="#Menu" onClick={() => {console.log('menu')}}>
                   Menu
                 </a>
               </li>

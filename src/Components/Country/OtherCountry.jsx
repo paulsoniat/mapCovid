@@ -34,7 +34,6 @@ const OtherCountry = ( { rootPath } ) => {
         if (allDataOverTime !== 'none') {
 
           try {
-            console.log(name, 'nombrecita')
             let countryShortCode;
             for (const country in countryDictionary) {
         
@@ -75,13 +74,10 @@ const OtherCountry = ( { rootPath } ) => {
                   correctDays.push(day);
                 }
               })
-              console.log(correctDays);
               setAllDataOverTime(correctDays)
           })
           .catch((err) =>{
               setAllDataOverTime('none')
-            console.log(err, 'this be error 192839183298')
-            console.log(allDataOverTime)
           })
           .then(() => {
             axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
@@ -102,7 +98,6 @@ const OtherCountry = ( { rootPath } ) => {
                 })
                 .catch((err) => {
                   setNewsData([])
-                  console.log(newsData, 'this is news data')
                 })
               }
             })
@@ -115,7 +110,6 @@ const OtherCountry = ( { rootPath } ) => {
       }
     }
   });
-console.log(allDataOverTime, '102 all data')
 if (name && countryData && allDataOverTime && newsData) {
   return (
     <>

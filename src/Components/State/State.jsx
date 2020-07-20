@@ -17,7 +17,6 @@ const State = () => {
     // setSelectedState(name);
       axios.get('https://covid19-us-api.herokuapp.com/county')
       .then((res) => {
-        console.log(res.data.message, 'this is message')
         let stateCounties = [];
         res.data.message.forEach((county) => {
           if (county.state_name === name) {
