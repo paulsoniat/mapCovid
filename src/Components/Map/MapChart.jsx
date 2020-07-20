@@ -9,6 +9,7 @@ import {
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip"
 import MapHover from './MapHover';
+import countryNameDictionary from '../../utils/Data/countryNameDictionary'
 
 import BacteriaLoader from '../Loaders/BacteriaLoader'
 
@@ -39,6 +40,16 @@ const MapChart = ({ setTooltipContent, display }) => {
           geoData = res.data.objects.ne_110m_admin_0_countries.geometries;
           geoData = geoData.map((geoCountry, geoIndex) => {
             countries.map((country, countryIndex) => {
+              if (countryNameDictionary[geoCountry.properties.NAME] === country.Country) {
+                geoCountry.properties.newCases = country.NewConfirmed;
+                geoCountry.properties.countryCode = country.CountryCode;
+                geoCountry.properties.slug = country.Slug;
+                geoCountry.properties.newDeaths = country.NewDeaths
+                geoCountry.properties.newRecovered = country.NewRecovered
+                geoCountry.properties.totalConfirmed = country.TotalConfirmed
+                geoCountry.properties.totalDeaths = country.TotalDeaths
+                geoCountry.properties.totalRecovered = country.TotalRecovered
+              }
               if (geoCountry.properties.NAME === country.Country) {
                 geoCountry.properties.newCases = country.NewConfirmed;
                 geoCountry.properties.countryCode = country.CountryCode;
