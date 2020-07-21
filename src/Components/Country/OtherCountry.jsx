@@ -20,7 +20,7 @@ const OtherCountry = ( { rootPath } ) => {
 
   useEffect(()=>{
 
-    if (!countryData && allDataOverTime !== 'none' && !newsData) {
+    if (!countryData && !newsData) {
 
       for (const country in countryDictionary) {
         
@@ -28,10 +28,6 @@ const OtherCountry = ( { rootPath } ) => {
           setCountryCode(country);
         }
       }
-
-      if (!allDataOverTime) {
-        if (allDataOverTime !== 'none') {
-
           try {
             let countryShortCode;
             for (const country in countryDictionary) {
@@ -40,42 +36,6 @@ const OtherCountry = ( { rootPath } ) => {
                 countryShortCode = country;
               }
             }
-            axios.get(`https://corona.lmao.ninja/v2/historical/${countryShortCode}?lastdays=90`)
-          .then((res, err) => {
-              const timelineData = res.data.timeline;
-              let everyFifthDay = allDataOverTime;
-              everyFifthDay = [];
-              everyFifthDay = Object.keys(res.data.timeline.cases);
-              everyFifthDay = everyFifthDay.reduce((seed, key) => {
-                  // const day = key.slice(0, -3)
-                  seed.push({'day': key}); 
-                  return seed; 
-              }, []);
-              everyFifthDay = everyFifthDay.map((key) => {
-                  for (const caseData in timelineData.cases) {
-                      if (caseData === key.day) {
-                          key.cases = timelineData.cases[key.day]
-                      }
-                  }
-                  for (const deathData in timelineData.deaths) {
-                    if (deathData === key.day) {
-                        key.deaths = timelineData.deaths[key.day]
-                    }
-                }
-                  return key;
-              });
-              const correctDays = []
-              everyFifthDay.forEach((day, index) => {
-                if (index % 10 === 0) {
-                  correctDays.push(day);
-                }
-              })
-              setAllDataOverTime(correctDays)
-          })
-          .catch((err) =>{
-              setAllDataOverTime('none')
-          })
-          .then(() => {
             axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
             .then((res) => {
               let countryStatisticsResults;
@@ -93,20 +53,19 @@ const OtherCountry = ( { rootPath } ) => {
                   setNewsData(res.data.news);
                 })
                 .catch((err) => {
+                  
                   setNewsData([])
                 })
               }
-            })
             })
           }
           catch(err) {
             setAllDataOverTime('none');
           }
         }
-      }
-    }
-  }, [countryData, allDataOverTime, newsData, name, countryCode]);
-if (name && countryData && allDataOverTime && newsData) {
+  }, [countryData, newsData, name, countryCode]);
+
+if (name && countryData && newsData) {
   return (
     <>
       <div className="country-container">
@@ -119,12 +78,6 @@ if (name && countryData && allDataOverTime && newsData) {
                 <CountryStatChart data={countryData} />
             </div>
             <div className="country-quarter-display-sticky">
-              {allDataOverTime !== 'none' ? (
-                  <CountryGraphOverTime data={allDataOverTime}/>
-                ) : 
-                  <div>
-                    Can't retrieve data at this time
-                  </div>}
             </div>
         </div>
         <div className="country-column">
@@ -147,6 +100,7 @@ else {
     <BacteriaLoader />
   )
 }
+
 };
 
 export default OtherCountry;

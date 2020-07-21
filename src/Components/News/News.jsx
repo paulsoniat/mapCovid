@@ -9,7 +9,7 @@ const News = ( { rootPath } ) => {
   const { name } = useParams();
 
   useEffect(()=>{
-    axios.post('http://covid19-us-api.herokuapp.com/news', {
+    axios.post('https://covid19-us-api.herokuapp.com/news', {
       "state": "LA",
       "topic": "Coronavirus"
   }).then((res) => {

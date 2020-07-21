@@ -22,6 +22,7 @@ const countryNameDictionary = {
     "Congo" : "Congo (Brazzaville)",
     "Czechia": "Czech Republic",
     "Syria": "Syrian Arab Republic (Syria)",
+    "Brunei": "Brunei Darussalam",
 }
 
 export default countryNameDictionary;
