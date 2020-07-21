@@ -1,5 +1,5 @@
 import React from 'react';
-
+import rounded from '../../utils/rounded';
 const CountryTable = ({
   data
 }) => {
@@ -9,21 +9,24 @@ const CountryTable = ({
   return (
     <>
     {data.map((item, index) => {
-      console.log(item);
         if (item === 'none') {
             return <div key={index}>
                 The data could not be pulled for these statistics
             </div>
         }
-        return <div key={index}>
-           { item.total_cases} Total Cases
-           <br/>
-           { item.total_deaths} Total Deaths 
-           <br/>
-           { item.total_recovered} Total Recovered
-           <br/>
-           { item.total_serious_cases} Serious Cases
-           <br/>
+        return <div key={index} style={{width: "100%", display: "flex", flexDirection: "column", "background-color": "black", "box-sizing": "border-box", "margin": ".5rem 0rem .5rem 0rem", "padding": "1rem", "border-radius": ".5rem" }}>
+           <div style={{color: "#ffa500"}}>
+             { rounded(item.total_cases)} Total Cases
+           </div>
+           <div style={{color: "firebrick"}}>
+           { rounded(item.total_deaths)} Total Deaths 
+           </div>
+           <div style={{color: "Chartreuse"}}>
+           { rounded(item.total_recovered)} Total Recovered
+           </div>
+           <div style={{color: "red"}}>
+           { rounded(item.total_serious_cases)} Serious Cases
+           </div>
         </div>
     })}
     </>

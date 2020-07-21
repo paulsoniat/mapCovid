@@ -9,12 +9,14 @@
 .country-column {
     background-color: darkgray;
     width: 50vw;
+    display: flex;
+    flex-direction: column;
 }
 
 .country-quarter-display {
     background-color: darkgray;
-    height: 50%;
     box-sizing: border-box;
+    margin: auto;
     @media only screen and (max-width: 750px) {
         font-size: 70%;
         overflow-y: auto;
@@ -22,7 +24,7 @@
     &-sticky{
         overflow: hidden;
         background-color: lightgray;
-        height: 30vh;
+        height: 100%;
         box-sizing: border-box;
         display: flex;
         padding: .5rem 3.5rem .5rem .5rem;
