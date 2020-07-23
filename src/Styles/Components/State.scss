@@ -1,8 +1,8 @@
 .state {
-  font-size: 65%;
-  display: flex;
-    flex-direction: column;
-    overflow-x: auto;
+  font-size: 60%;
+  @media only screen and (max-width: 750px) {
+    font-size: 45%;
+}
     &__table {
       width: 100%;
       border: solid 1px black;
@@ -66,13 +66,13 @@
     background-color: darkgray;
     width: 50vw;
     display: flex;
-    flex-direction: column;
+    margin: auto;
 }
 
 .state-quarter-display {
-    background-color: darkgray;
-    box-sizing: border-box;
-    margin: auto;
+  background-color: darkgray;
+  box-sizing: border-box;
+  margin: auto;
     @media only screen and (max-width: 750px) {
         font-size: 50%;
         overflow-y: auto;
@@ -109,7 +109,8 @@
 }
 .state-table-container {
   background-color: gray;
+  height: 33vh;
+  overflow-x: auto;
   flex: 1 100%;
   max-width: 100%;
-  overflow: hidden;
 }
