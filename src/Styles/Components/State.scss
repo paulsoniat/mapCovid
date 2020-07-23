@@ -1,8 +1,6 @@
 .state {
   font-size: 60%;
-  @media only screen and (max-width: 750px) {
-    font-size: 45%;
-}
+
     &__table {
       width: 100%;
       border: solid 1px black;
