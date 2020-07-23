@@ -12,10 +12,7 @@ const StateTable = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
+    page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -24,24 +21,23 @@ const StateTable = ({
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize, autoResetPage = false, },
   } = useTable(
     {
       columns,
       data,
+      autoResetPage: false,
       initialState: { pageIndex: 0 },
     },
     usePagination
   )
 
-  // Render Data Table UI
-  if (data) {
   return (
-    <>
-       <table {...getTableProps()}>
-        <thead>
+    <div className="state">
+       <table className="state__table state__body" {...getTableProps()}>
+        <thead className="state__header">
           {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <tr className="state__row" {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map(column => (
                 <th {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
@@ -52,9 +48,9 @@ const StateTable = ({
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr {...row.getRowProps()}>
+              <tr className="state__row" {...row.getRowProps()}>
                 {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  return <td className="state__cell" {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
               </tr>
             )
@@ -94,25 +90,11 @@ const StateTable = ({
             style={{ width: '100px' }}
           />
         </span>{' '}
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[3, 7, 15].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
       </div>
-    </>
+    </div>
 
   )
-} else {
-      return <BacteriaLoader />
-    }
+
 };
 
 export default StateTable;

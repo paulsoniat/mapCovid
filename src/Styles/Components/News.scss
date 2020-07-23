@@ -3,10 +3,14 @@
     color: black;
     margin: auto;
     background-color: whitesmoke;
-    overflow-y: scroll;
-    
+    margin-bottom: 2rem;
 }
 .news-content{
     max-height: 100%;
     font-size: .8rem;
+    padding: 1rem;
+    overflow: auto;
+    @media only screen and (max-width: 750px){
+        padding: .5rem;
+    }
 }

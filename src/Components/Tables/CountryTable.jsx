@@ -37,7 +37,7 @@ const CountryTable = ({
   if (data) {
   return (
     <>
-       <table {...getTableProps()}>
+       <table style={{width: "100%"}}{...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup, i) => (
             <tr key={i} {...headerGroup.getHeaderGroupProps()}>

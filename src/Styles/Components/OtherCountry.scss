@@ -18,8 +18,9 @@
     box-sizing: border-box;
     margin: auto;
     @media only screen and (max-width: 750px) {
-        font-size: 70%;
+        font-size: 50%;
         overflow-y: auto;
+        height: 40%;
     }
     &-sticky{
         overflow: hidden;

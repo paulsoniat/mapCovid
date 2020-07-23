@@ -1,16 +1,14 @@
-.scoutingreportsgamereferences {
-    padding-top: 1rem;
-    margin: 2.5rem 0rem;
-    overflow-x: auto;
-  
+.state {
+  font-size: 65%;
     &__table {
       width: 100%;
-      border: black;
+      border: solid 1px black;
       background: whitesmoke;
+      color: black;
       white-space: nowrap;
       border-collapse: collapse;
-      font-size: 1rem;
-      overflow: hidden;
+      // font-size: 1rem;
+      overflow-x: auto;
       @media print {
         font-size: 1.2rem;
       }
@@ -27,10 +25,8 @@
       }
     }
   
-    &__body {
-      color: black;
   
-      &-row {
+      &__row {
         border-bottom: red;
   
         &:nth-child(2n) {
@@ -38,13 +34,79 @@
         }
       }
   
-      &-cell {
-        border: black;
-        padding: 1.25rem;
+      &__cell {
+        border: 1px solid black;
+        padding: .15rem;
         text-align: center;
+        box-sizing: border-box;
         @media print {
           padding: .5rem !important;
         }
       }
-    }
   }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+
+  .state-container {
+    display: flex;
+    min-height: 93vh;
+    background-color: darkgray;
+    flex-wrap: wrap;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+.state-column {
+    background-color: darkgray;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.state-quarter-display {
+    background-color: darkgray;
+    box-sizing: border-box;
+    margin: auto;
+    @media only screen and (max-width: 750px) {
+        font-size: 50%;
+        overflow-y: auto;
+        height: 40%;
+    }
+    &-sticky{
+        overflow: hidden;
+        background-color: lightgray;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        padding: .5rem 3.5rem .5rem .5rem;
+        color: black;
+        text-align: center;
+    }
+}
+
+.column-container{
+    display: flex;
+    flex: 1;
+}
+
+.state-full-half {
+    background-color: lightgrey;
+    width: 50vw;
+    height: 60vh;
+    overflow-y: hidden;
+}
+.state-table {
+    background-color: gray;
+    flex: 1 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+.state-table-container {
+  background-color: gray;
+  flex: 1 100%;
+  max-width: 100%;
+  overflow: hidden;
+}

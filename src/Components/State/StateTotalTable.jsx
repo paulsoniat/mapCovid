@@ -1,6 +1,6 @@
 import React from 'react';
 import rounded from '../../utils/rounded';
-const CountryTable = ({
+const StateTotalTable = ({
   data
 }) => {
 
@@ -16,16 +16,13 @@ const CountryTable = ({
         }
         return <div key={index} style={{width: "100%", display: "flex", flexDirection: "column", "backgroundColor": "black", "boxSizing": "border-box", "margin": ".5rem 0rem .5rem 0rem", "padding": "1rem", "borderRadius": ".5rem" }}>
            <div style={{color: "#ffa500"}}>
-             { rounded((item.total_cases))} Total Cases
+             { rounded(item.confirmedCases)} Total Cases
            </div>
            <div style={{color: "firebrick"}}>
-           { rounded(item.total_deaths)} Total Deaths 
-           </div>
-           <div style={{color: "Chartreuse"}}>
-           { rounded(item.total_recovered)} Total Recovered
+           { item.newDeaths} New Deaths 
            </div>
            <div style={{color: "red"}}>
-           { rounded(item.total_serious_cases)} Serious Cases
+           { item.newCases} New Cases
            </div>
         </div>
     })}
@@ -35,4 +32,4 @@ const CountryTable = ({
 }
 };
 
-export default CountryTable;
+export default StateTotalTable;
