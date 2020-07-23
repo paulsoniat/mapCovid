@@ -4,12 +4,12 @@
     margin: auto;
     background-color: whitesmoke;
     margin-bottom: 2rem;
+    overflow-y: auto;
 }
 .news-content{
     max-height: 100%;
     font-size: .8rem;
     padding: 1rem;
-    overflow: auto;
     @media only screen and (max-width: 750px){
         padding: .5rem;
     }

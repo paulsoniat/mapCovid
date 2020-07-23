@@ -1,12 +1,14 @@
 html, body {
   margin: 0;
-  height: 100%;
+  height: 100vh;
+  overflow-y: hidden;
   font-family: 'Montserrat', sans-serif;
   background-color: rgba(0, 0, 0, 0.35);
   font-size: 1.25rem;
   color: whitesmoke !important;
   @media only screen and (max-width: 550px) {
     font-size: 50%;
+    overflow-y: auto !important;
   }
 }
 
