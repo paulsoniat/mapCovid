@@ -1,5 +1,8 @@
 .state {
   font-size: 65%;
+  display: flex;
+    flex-direction: column;
+    overflow-x: auto;
     &__table {
       width: 100%;
       border: solid 1px black;
