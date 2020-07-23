@@ -111,7 +111,7 @@ const h = window.innerHeight - 60
     return color;
   }
   const modalHeaderText = "Welcome to the Covid-19 Dashboard";
-  const modalBodyText = ["<div>  Hover/Click on a country to learn about the country's Covid situation.</br></br>", " I used multiple API's for data, so if it is inconsitent/missing the data might not be available for that source or updated at a different time.</br></br>", " I tried to find the largest range of free data sources with the most up to date information, they are - {COVID19-API, NovelCOVID API, the Virus Tracker, Smartable.ai, CovidTracking}.</br></br>", " Currently I am paying all costs for hosting and keeping this add free!</br></br>", "You can support the site by buying me a coffee and connect with me on LinkedIn</br></br>",]
+  const modalBodyText = ["<div>  Hover/Click on a country to learn about the country's Covid situation.</br></br>", " I used multiple API's for data, so if it is inconsitent/missing the data might not be available for that source or updated at a different time.</br></br>", " I tried to find the largest range of free data sources with the most up to date information, they are - {COVID19-API, NovelCOVID API, the Virus Tracker, Smartable.ai, CovidTracking}.</br></br>", " Currently I am paying all costs for hosting and keeping this add free!</br></br>", "You can support the site by buying me a coffee and connect with me on <a href=/paul-linkedin> LinkedIn </a> </br></br>",]
   const handleModalClose = () => {
     setModalDisplay(!modalDisplay)
   }

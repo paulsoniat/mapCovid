@@ -18,7 +18,7 @@
     }
   
     &__header {
-      background-color: red;
+      background-color: black;
       color: whitesmoke;
       font-weight: 500;
       text-transform: uppercase;
@@ -30,7 +30,7 @@
   
   
       &__row {
-        border-bottom: red;
+        border-bottom: black;
   
         &:nth-child(2n) {
           background-color: darkgray;
@@ -55,7 +55,8 @@
 
   .state-container {
     display: flex;
-    min-height: 93vh;
+    flex-direction: column;
+    margin-top: 1rem;
     background-color: darkgray;
     flex-wrap: wrap;
     text-align: center;

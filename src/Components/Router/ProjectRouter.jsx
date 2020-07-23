@@ -22,6 +22,10 @@ const ProjectRouter = ({
         path={`/state/:name`}
         render={() => <State />}
       />
+      <Route path='/paul-linkedin' component={() => { 
+     window.location.href = 'https://www.linkedin.com/in/paul-soniat/'; 
+     return null;
+}}/>
       <Route
         path={`/`}
         render={() => <MapChart setTooltipContent={setTooltipContent}/>}
