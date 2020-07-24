@@ -1,7 +1,8 @@
 import React from 'react';
 import { useTable, usePagination } from 'react-table';
+import BacteriaLoader from '../Loaders/BacteriaLoader';
 
-const CountryTable = ({
+const StateTable = ({
   columns,
   data
 }) => {
@@ -11,10 +12,7 @@ const CountryTable = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
+    page,
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -23,26 +21,25 @@ const CountryTable = ({
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    state: { pageIndex, pageSize, autoResetPage = false, },
   } = useTable(
     {
       columns,
       data,
+      autoResetPage: false,
       initialState: { pageIndex: 0 },
     },
     usePagination
   )
 
-  // Render Data Table UI
-  if (data) {
   return (
     <>
-       <table style={{width: "100%"}}{...getTableProps()}>
-        <thead>
-          {headerGroups.map((headerGroup, i) => (
-            <tr key={i} {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column, i) => (
-                <th key={i} {...column.getHeaderProps()}>{column.render('Header')}</th>
+       <table className="state__table state__body" {...getTableProps()}>
+        <thead className="state__header">
+          {headerGroups.map(headerGroup => (
+            <tr className="state__row" {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map(column => (
+                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
               ))}
             </tr>
           ))}
@@ -51,9 +48,9 @@ const CountryTable = ({
           {page.map((row, i) => {
             prepareRow(row)
             return (
-              <tr key={i} {...row.getRowProps()}>
-                {row.cells.map((cell, i) => {
-                  return <td key={i} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+              <tr className="state__row" {...row.getRowProps()}>
+                {row.cells.map(cell => {
+                  return <td className="state__cell" {...cell.getCellProps()}>{cell.render('Cell')}</td>
                 })}
               </tr>
             )
@@ -93,23 +90,11 @@ const CountryTable = ({
             style={{ width: '100px' }}
           />
         </span>{' '}
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[3, 7, 15].map(pageSize => (
-            <option key={Math.random()} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
       </div>
     </>
 
   )
-}
+
 };
 
-export default CountryTable;
+export default StateTable;

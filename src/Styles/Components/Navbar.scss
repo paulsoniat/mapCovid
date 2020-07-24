@@ -1,7 +1,7 @@
 .navbar{
   background-color: #333;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   ul {
     list-style-type: none;
     margin: 0;
@@ -20,7 +20,7 @@
     border-radius: .25rem;
     text-align: center;
     height: 50%;
-    margin: auto;
+    margin: .8rem 0rem;
     padding: 0 .75rem;
     &:hover {
       background-color: red;

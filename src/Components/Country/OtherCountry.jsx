@@ -3,7 +3,7 @@ import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
 import { useParams } from 'react-router-dom';
 import CountryTable from '../Tables/CountryTable.jsx';
-import stateCountyColumns from '../../utils/stateTableColumns'
+import otherCountryColumns from '../../utils/OtherCountryColumns'
 import CountryGraphOverTime from './CountryGraphOverTime';
 import countryDictionary from '../../utils/Data/countryDictionary';
 import CountryStatChart from './CountryStatChart';
@@ -15,12 +15,13 @@ const OtherCountry = ( { rootPath } ) => {
   const [countryData, setCountryData] = useState(null);
   const [allDataOverTime, setAllDataOverTime] = useState(null);
   const [countryCode, setCountryCode] = useState(null);
+  const [tableData, setTableData] = useState(null);
   
   const [newsData, setNewsData] = useState(null);
 
   useEffect(()=>{
 
-    if (!countryData && !newsData) {
+    if (!countryData && !newsData && !tableData) {
 
       for (const country in countryDictionary) {
         
@@ -56,6 +57,18 @@ const OtherCountry = ( { rootPath } ) => {
                   
                   setNewsData([])
                 })
+                .then(() => {
+                  axios.get('https://corona.lmao.ninja/v2/jhucsse')
+                  .then((res) => {
+                    const countryByCity = [];
+                    res.data.forEach((city) => {
+                      if (city.country === name) {
+                        countryByCity.push(city);
+                      }
+                    })
+                    setTableData(countryByCity);
+                  })
+                })
               }
             })
           }
@@ -70,14 +83,17 @@ if (name && countryData && newsData) {
     <>
       <div className="country-container">
           <div className="country-table">
-            <CountryTable data={countryData} columns={stateCountyColumns} />
+          {tableData !== null ? ( 
+                <CountryTable data={tableData} columns={otherCountryColumns} />
+              ) : 
+                <div>
+                  City Data is not available for this country.
+                </div>}
           </div>
     <div className="column-container">
         <div className="country-column">
             <div className="country-quarter-display">
                 <CountryStatChart data={countryData} />
-            </div>
-            <div className="country-quarter-display-sticky">
             </div>
         </div>
         <div className="country-column">

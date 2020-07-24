@@ -54,11 +54,13 @@ if (newsData.length) {
                   {altData.map((newsStory) => {
                     return (
                       <div key={newsStory.title}>
-                      <div >
-                        <a className="news-story" href={`${newsStory.webUrl}`}>
-                            {newsStory.provider.name} - {newsStory.title}
-                        </a>
-                      </div>
+                      <div className="news-story">
+                        <NewsPaper /> 
+                    <a className="news-link" href={`${newsStory.webUrl}`}>
+                        <br></br>
+                        {newsStory.provider.name} - {newsStory.title}
+                    </a>
+                  </div>
                       <br />
                       </div>
                     )
