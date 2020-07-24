@@ -42,6 +42,7 @@ const State = () => {
           "topic": "Coronavirus"
       }).then((res) => {
         if (!newsData) {
+          console.log(res.data)
           setNewsData (res.data);
           setCountyData([countyData])
           setSelectedCounties(stateCounties);

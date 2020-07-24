@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import NewsPaper from '../Loaders/NewsPaper';
 import { useParams } from 'react-router-dom';
 
 const News = ( { rootPath, newsData} ) => {
@@ -18,9 +19,10 @@ if (newsData) {
               {newsData.message.map((newsStory) => {
                 return (
                   <div key={newsStory.title}>
-                  <div>
-                    <a href={`${newsStory.url}`}>
-                      {newsStory.title}
+                  <div className="news-story">
+                    <NewsPaper /> 
+                    <a className="news-link" href={`${newsStory.url}`}>
+                        {newsStory.title}
                     </a>
                   </div>
                   <br />

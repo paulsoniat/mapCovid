@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
+import NewsPaper from '../Loaders/NewsPaper';
 
 const CountryNews = ( { newsData } ) => {
 
@@ -29,8 +30,10 @@ if (newsData.length) {
               {newsData.map((newsStory) => {
                 return (
                   <div key={newsStory.title}>
-                  <div>
-                    <a href={`${newsStory.webUrl}`}>
+                  <div className="news-story">
+                        <NewsPaper /> 
+                    <a className="news-link" href={`${newsStory.webUrl}`}>
+                        <br></br>
                         {newsStory.provider.name} - {newsStory.title}
                     </a>
                   </div>
@@ -51,8 +54,8 @@ if (newsData.length) {
                   {altData.map((newsStory) => {
                     return (
                       <div key={newsStory.title}>
-                      <div>
-                        <a href={`${newsStory.webUrl}`}>
+                      <div >
+                        <a className="news-story" href={`${newsStory.webUrl}`}>
                             {newsStory.provider.name} - {newsStory.title}
                         </a>
                       </div>
