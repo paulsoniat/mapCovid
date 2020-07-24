@@ -66,7 +66,11 @@ const OtherCountry = ( { rootPath } ) => {
                         countryByCity.push(city);
                       }
                     })
-                    setTableData(countryByCity);
+                    if (countryByCity.length <= 1) {
+                      setTableData([])
+                    } else {
+                      setTableData(countryByCity);
+                    }
                   })
                 })
               }
@@ -78,17 +82,12 @@ const OtherCountry = ( { rootPath } ) => {
         }
   }, [countryData, newsData, name, countryCode]);
 
-if (name && countryData && newsData) {
+if (name && countryData && newsData && tableData) {
   return (
     <>
       <div className="country-container">
           <div className="country-table">
-          {tableData !== null ? ( 
                 <CountryTable data={tableData} columns={otherCountryColumns} />
-              ) : 
-                <div>
-                  City Data is not available for this country.
-                </div>}
           </div>
     <div className="column-container">
         <div className="country-column">

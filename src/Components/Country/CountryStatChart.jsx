@@ -14,7 +14,7 @@ const CountryTable = ({
                 The data could not be pulled for these statistics
             </div>
         }
-        return <div key={index} style={{width: "100%", display: "flex", flexDirection: "column", "font-size":"1.2rem", "backgroundColor": "black", "boxSizing": "border-box", "margin": ".5rem", "padding": "1rem", "borderRadius": ".5rem" }}>
+        return <div key={index} style={{width: "100%", display: "flex", flexDirection: "column", "font-size":"1rem", "backgroundColor": "black", "boxSizing": "border-box", "margin": ".5rem", "padding": "1rem", "borderRadius": ".5rem" }}>
            <div style={{color: "#ffa500"}}>
              { rounded((item.total_cases))} Total Cases
            </div>
