@@ -7,29 +7,16 @@ const Navbar = () => {
   return (
     <>
     <div className="navbar">
-        <ul>
-            <li className="home">
-              <a href="/" onClick={() => {console.log('clicked home')}}>
+              <a className="navbar__button" style={{"text-decoration": "none", "color": "black"}}href="/">
                 Home
               </a>
-            </li>
-
-            <div className="menu-items">
-              <li className="menu-item">
+              <div>
                 <link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" />
                   <a className="bmc-button" target="_blank" href="https://www.buymeacoffee.com/paulsoniat">
                   <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" />
-                    <span>Buy me a coffee</span> 
+                    Buy me a coffee
                 </a>
-              </li>
-
-              <li className="menu-item">
-                <a href="#about" onClick={() => {console.log('clicked home')}}>
-                  About
-                </a>
-              </li>
-            </div>
-        </ul>
+              </div>
     </div>
     </>
   );

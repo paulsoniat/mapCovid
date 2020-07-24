@@ -1,0 +1,249 @@
+.overlay {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+.generic-text-modal {
+  width: 60%;
+  height: 40%;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border-radius: 2.5rem;
+  z-index: -1;
+  
+  text-align: center;
+  &__button-container {
+      display: flex;
+      margin: auto;
+      padding: .25rem;
+    }
+    &__button-accept {
+      text-align: center;
+      background-color: red;
+      box-shadow: none;
+      border: 3px solid black;
+      color: whitesmoke;
+      border-radius: .5rem;
+      display: flex;
+      margin: auto;
+      padding: .5rem;
+      &:hover {
+        color: red;
+        background-color: whitesmoke;
+        cursor: pointer;
+      }
+    }
+    &__section {
+      display: flex;
+      flex-direction: column;
+      margin: 1rem .5rem;
+      overflow-y: auto;
+      padding: 0 .5rem;
+      font-size: .8rem;
+      font-weight: bold;
+      &-text{
+        border-top: 1px dotted black;
+        padding: 1rem 0rem;
+      }
+      @media only screen and (max-width: 750px) {
+      font-size: .65rem;
+  }
+  }
+
+  @media only screen and (max-width: 750px) {
+      width: 60%;
+      height: 60%;
+  }
+
+}
+.modal {
+  width: 60%;
+  height: 40%;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border-radius: 2.5rem;
+
+  @media only screen and (max-width: 750px) {
+    width: 80%;
+    height: 90%;
+  }
+
+  @media only screen and (max-width: 550px) {
+    width: 85%;
+  }
+
+  @media only screen and (max-width: 300px) {
+    width: 90%;
+    height: 90%;
+  }
+  
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid;
+    padding: 1rem 1rem;
+  }
+
+  &__title {
+    color: red;
+    font-weight: bold;
+    padding: 0 1.5rem 0 1.5rem;
+    @media only screen and (max-width: 750px) {
+      font-size: 50%;
+      padding: 1rem;
+  }
+  }
+
+  &__close {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__image {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  &__subheader {
+    text-transform: uppercase;
+    color: black;
+    font-weight: bold;
+  }
+}
+
+
+@mixin transition() {
+  transition: all .4s cubic-bezier(.215,.61,.355,1);
+}
+
+/*
+div {
+  a {
+    width: 100px;
+    position: relative;
+    background-color: #ffffff;
+    border-radius: 50px;
+    opacity: 1;
+    @include transition();
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
+    -moz-box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
+    box-shadow: 0px 0px 30px 0px rgba(247,149,29,0.5);
+    
+    & > span {
+      background-color: black;
+      display: block;
+      height: 12px;
+      border-radius: 6px;
+      position: relative;
+      @include transition();
+      position: absolute;
+      top: 50%;
+      margin-top: -6px;
+      left: 18px;
+      width: 64px;
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+
+      span {
+        display: block;
+        background-color: red;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        @include transition();
+        position: absolute;
+      }
+
+      &.left {
+        transform: rotate(45deg);
+        transform-origin: center;
+
+        .circle-left {
+          @include transition();
+          margin-left: 0;
+        }
+
+        .circle-right {
+          @include transition();
+          margin-left: 52px;
+        }
+      }
+
+      &.right {
+        transform: rotate(-45deg);
+        transform-origin: center;
+
+        .circle-left {
+          @include transition();
+          margin-left: 0;
+        }
+
+        .circle-right {
+          @include transition();
+          margin-left: 52px;
+        }
+      }
+    }
+
+    &:hover {
+      & > span {
+        background-color: red;
+        @include transition();
+
+        span {
+          @include transition();
+          background-color: black;
+        }
+
+        &.left {
+
+          .circle-left {
+            @include transition();
+            margin-left: 52px;
+          }
+
+          .circle-right {
+            @include transition();
+            margin-left: 0;
+          }
+        }
+
+        &.right {
+
+          .circle-left {
+            @include transition();
+            margin-left: 52px;
+          }
+
+          .circle-right {
+            @include transition();
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+*/

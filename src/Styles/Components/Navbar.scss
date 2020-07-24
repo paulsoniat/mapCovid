@@ -1,56 +1,58 @@
 .navbar{
+  background-color: #333;
+  display: flex;
+  justify-content: space-around;
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
     
   }
-  
-  li {
-    float: left;
-    padding: 0 .5rem;
+
+  &__button{
+    width: 15vw;
+    border: 1px solid black;
+    background-color: whitesmoke;
+    font-size: 60%;
+    font-weight: 800;
+    color: red;
+    border-radius: .25rem;
+    text-align: center;
+    height: 50%;
+    margin: .8rem 0rem;
+    padding: 0 .75rem;
+    &:hover {
+      background-color: red;
+      color: whitesmoke !important;
+      cursor: pointer;
+    }
   }
   
   li a {
-    display: block;
     color: white;
     text-align: center;
     padding: .5rem .75rem;
     text-decoration: none;
   }
 
-  .home {
-    width: 15vw;
-    float: left;
-  }
-
-  .menu-items {
-    width: 60vw;
-    display: block;
-    float: right;
-  }
-  .menu-item {
-    float: right;
-  }
-  
-  li a:hover {
-    background-color: #111;
-  }
 
   .bmc-button img{
     height: 34px !important;width: 35px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;
   }
   
   .bmc-button{
+    text-align: center;
     float: right !important;
-    padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:inline-flex !important;color:#ffffff !important;background-color:#F471FF !important;border-radius: 5px !important;border: 1px solid transparent !important;padding: 7px 15px 7px 10px !important;font-size: 20px !important;letter-spacing:-0.08px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;
+    padding: 7px 15px 7px 10px !important;line-height: 35px !important;height:51px !important;text-decoration: none !important;display:inline-flex !important;color:#ffffff !important;background-color:#e3242b !important;border-radius: 5px !important;border: 1px solid transparent !important;padding: 7px 15px 7px 10px !important;font-size: .75rem !important;letter-spacing:-0.08px !important; margin: 0 auto !important;font-family:'Lato', sans-serif !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;
+    @media only screen and (max-width: 850px) {
+      font-size: .5rem !important;
+  }
   }
   .bmc-button:hover, .bmc-button:active, .bmc-button:focus {
     -webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#ffffff !important;
   }
 
-  .span {margin-left:5px;font-size:19px !important;
+  .span {margin-left:5px;font-size:1.75rem!important;
   }
 }

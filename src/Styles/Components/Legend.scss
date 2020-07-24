@@ -1,0 +1,91 @@
+dt {
+    width: .25rem;
+    height: .25rem;
+    border: 1px solid #000;
+    min-width: 1rem;
+    }
+    .alot {
+        background-color: #ff0000; 
+        color: #ff0000; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .tenk {
+        background-color: #ff1919; 
+        color: #ff1919; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .fivek {
+        background-color: #ff3232; 
+        color: #ff3232; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .twohalfk {
+        background-color: #ff4c4c; 
+        color: #ff4c4c; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .twok {
+        background-color: #ff6666; 
+        color: #ff6666; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .onehalfk {
+        background-color: #ff7f7f; 
+        color: #ff7f7f;
+        width: 5rem;
+        height: 1rem; 
+    }
+    .onek {
+        background-color: #ff9999; 
+        color: #ff9999; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .fivehunned {
+        background-color: #ffb2b2; 
+        color: #ffb2b2; 
+        width: 5rem;
+        height: 1rem;
+    }
+    .twofitty {
+        background-color: #ffcccc; 
+        color: #ffcccc; 
+        width: 5rem;
+        height: 1rem;
+    }
+dl {
+    display: flex;
+    max-width: 100%;
+    font-size: .6rem;
+    margin: 0rem 2.5rem 1rem 2.5rem;
+    padding: .5rem;
+    overflow: auto;
+    justify-content: space-around;
+    @media only screen and (max-width: 750px) {
+        justify-content: space-between;
+    }
+}
+
+.legendText {
+    font-size: 1rem;
+    text-align: center;
+    color: red;
+    font-weight: bolder;
+    margin-top: 2.5rem;
+}
+.legendSub {
+    font-size: .7rem;
+    text-align: center;
+    color: whitesmoke;
+    font-weight: bold;
+    padding: .5rem;
+}
+
+.legend-text-container{
+    text-align: center;
+}

@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, Legend } from 'recharts';
 import axios from 'axios';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
-const data = [{name: 'Page A', uv: 400, pv: 2400, amt: 2400}, {name: 'Page b', uv: 300, pv: 2400, amt: 2400},{name: 'Page c', uv: 200, pv: 2400, amt: 2400},{name: 'Page d', uv: 140, pv: 2400, amt: 2400} ];
+import USMapByCounty from "../Map/USMapByCounty";
+import { useParams } from 'react-router-dom';
+import OtherCountry from './OtherCountry';
 
-const Country = () => {
+const Country = ( { setTooltipContent } ) => {
 
   const [countryData, setcountryData] = useState(null);
+  const { name } = useParams();
+
   useEffect(()=>{
     if(!countryData) {
       let countries;
@@ -40,9 +43,7 @@ const Country = () => {
           })
           const allGeoData = geoUrlRes
           geoUrl = allGeoData;
-          setTimeout(() => {
             setcountryData(geoUrl);
-          }, 1000)
         })
       })
     }
@@ -51,9 +52,13 @@ const Country = () => {
 if (countryData) {
   return (
     <>
-      <div className="country">
-        <div> Contentttttt</div>
-      </div>
+        {
+        (name === 'United States of America') 
+          ? (
+          <USMapByCounty setTooltipContent={setTooltipContent} />
+          ) : 
+          <OtherCountry />
+        }
     </>
   );
 }

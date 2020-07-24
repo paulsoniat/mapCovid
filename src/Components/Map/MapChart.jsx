@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
+import MediaQuery from 'react-responsive';
 import axios from 'axios';
 import {
   ZoomableGroup,
@@ -8,13 +9,18 @@ import {
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip"
 import MapHover from './MapHover';
+import countryNameDictionary from '../../utils/Data/countryNameDictionary'
 
 import BacteriaLoader from '../Loaders/BacteriaLoader'
 
 import history from '../../utils/history';
+import TextModal from '../Modal/TextModal'
+
+//TODO: Break out into redux and set up store
 
 const MapChart = ({ setTooltipContent, display }) => {
-
+  
+  const [modalDisplay, setModalDisplay] = useState(true);
   const [yearlyData, setYearlyData] = useState(null);
   
   useEffect(()=>{
@@ -34,6 +40,16 @@ const MapChart = ({ setTooltipContent, display }) => {
           geoData = res.data.objects.ne_110m_admin_0_countries.geometries;
           geoData = geoData.map((geoCountry, geoIndex) => {
             countries.map((country, countryIndex) => {
+              if (countryNameDictionary[geoCountry.properties.NAME] === country.Country) {
+                geoCountry.properties.newCases = country.NewConfirmed;
+                geoCountry.properties.countryCode = country.CountryCode;
+                geoCountry.properties.slug = country.Slug;
+                geoCountry.properties.newDeaths = country.NewDeaths
+                geoCountry.properties.newRecovered = country.NewRecovered
+                geoCountry.properties.totalConfirmed = country.TotalConfirmed
+                geoCountry.properties.totalDeaths = country.TotalDeaths
+                geoCountry.properties.totalRecovered = country.TotalRecovered
+              }
               if (geoCountry.properties.NAME === country.Country) {
                 geoCountry.properties.newCases = country.NewConfirmed;
                 geoCountry.properties.countryCode = country.CountryCode;
@@ -45,6 +61,7 @@ const MapChart = ({ setTooltipContent, display }) => {
                 geoCountry.properties.totalRecovered = country.TotalRecovered
               }
               else {
+
               }
             })
           })
@@ -57,8 +74,6 @@ const MapChart = ({ setTooltipContent, display }) => {
       })
     }
   }, [yearlyData]);
-
-
 
 const h = window.innerHeight - 60
 || document.documentElement.clientHeight -60
@@ -95,9 +110,16 @@ const h = window.innerHeight - 60
     }
     return color;
   }
-  if(yearlyData) {
+  const modalHeaderText = "Welcome to the Covid-19 Dashboard";
+  const modalBodyText = ["<div>  Hover/Click on a country to learn about the country's Covid situation.</br></br>", " I used multiple API's for data, so if it is inconsitent/missing the data might not be available for that source or updated at a different time.</br></br>", " I tried to find the largest range of free data sources with the most up to date information, they are - {COVID19-API, NovelCOVID API, the Virus Tracker, Smartable.ai, CovidTracking}.</br></br>", " Currently I am paying all costs for hosting and keeping this add free!</br></br>", "You can support the site by buying me a coffee and connect with me on <a href=/paul-linkedin> LinkedIn </a> </br></br>",]
+  const handleModalClose = () => {
+    setModalDisplay(!modalDisplay)
+  }
 
-    console.log(yearlyData)
+  if (modalDisplay) {
+       return (
+        <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
+      )
   }
   if (display === "none") {
     return (
@@ -107,51 +129,105 @@ const h = window.innerHeight - 60
     return (
       <>
       {
+      (modalDisplay) ? (
+        <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
+      ) : null
+      }
+      {
         (yearlyData && yearlyData.arcs)
           ? (
-        <ComposableMap data-tip=""
-        height={h}
-        className="map-chart" 
-        projectionConfig={{ scale: 200 }}>
-          <ZoomableGroup>
-            <Geographies geography={yearlyData}>
-              {({ geographies }) =>
-                geographies.map(geo => (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    onClick={() => {
-                      console.log('clicked');
-                      history.push(`/country/${geo.properties.NAME}`);
-                    }}
-                    data-tip={''}
-                    onMouseEnter={() => {
-                      ReactTooltip.rebuild(); 
-                      setTooltipContent(<MapHover countryData={geo} />);
-                    }}
-                    onMouseLeave={() => {
-                      setTooltipContent("");
-                    }}
-                    style={{
-                      default: {
-                        fill: `${colorPicker(geo.properties.newCases)}`,
-                        stroke: "#191919",
-                      },
-                      hover: {
-                        fill: "#a9a9a9",
-                        stroke: "#191919"
-                      },
-                      pressed: {
-                        fill: "none",
-                        stroke: "none"
+            <>
+            <MediaQuery minDeviceWidth={1224}>
+              <ComposableMap data-tip=""
+                height={h}
+                className="map-chart" 
+                projectionConfig={{ scale: 200 }}>
+                  <ZoomableGroup>
+                    <Geographies geography={yearlyData}>
+                      {({ geographies }) =>
+                        geographies.map(geo => (
+                          <Geography
+                            key={geo.rsmKey}
+                            geography={geo}
+                            onClick={() => {
+                              history.push(`/country/${geo.properties.NAME}`);
+                            }}
+                            data-tip={''}
+                            onMouseEnter={() => {
+                              ReactTooltip.rebuild(); 
+                              setTooltipContent(<MapHover countryData={geo} />);
+                            }}
+                            onMouseLeave={() => {
+                              setTooltipContent("");
+                            }}
+                            style={{
+                              default: {
+                                fill: `${colorPicker(geo.properties.newCases)}`,
+                                stroke: "#191919",
+                                outline: 'none',
+                              },
+                              hover: {
+                                fill: "#a9a9a9",
+                                stroke: "#191919",
+                                outline: 'none',
+                              },
+                              pressed: {
+                                fill: "none",
+                                stroke: "none",
+                                outline: 'none',
+                              }
+                            }}
+                          />
+                        ))
                       }
-                    }}
-                  />
-                ))
-              }
-            </Geographies>
-          </ZoomableGroup>
-        </ComposableMap>
+                  </Geographies>
+                </ZoomableGroup>
+              </ComposableMap>
+            </MediaQuery>
+            <MediaQuery maxDeviceWidth={1224}>
+            <ComposableMap data-tip=""
+              height={h}
+              className="map-chart" 
+              projectionConfig={{ scale: 200 }}>
+                <ZoomableGroup>
+                  <Geographies geography={yearlyData}>
+                    {({ geographies }) =>
+                      geographies.map(geo => (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          data-tip={''}
+                          onMouseEnter={() => {
+                            history.push(`/country/${geo.properties.NAME}`);
+                          }}
+                          onMouseLeave={() => {
+                            setTooltipContent("");
+                          }}
+                          style={{
+                            default: {
+                              fill: `${colorPicker(geo.properties.newCases)}`,
+                              stroke: "#191919",
+                              outline: 'none',
+                            },
+                            hover: {
+                              fill: "#a9a9a9",
+                              stroke: "#191919",
+                              outline: 'none',
+                            },
+                            pressed: {
+                              fill: "none",
+                              stroke: "none",
+                              outline: 'none',
+                            }
+                          }}
+                        />
+                      ))
+                    }
+                </Geographies>
+              </ZoomableGroup>
+            </ComposableMap>
+          </MediaQuery>
+          </>
           )
           : <BacteriaLoader />
       }

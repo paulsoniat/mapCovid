@@ -1,0 +1,42 @@
+.news-container {
+    height: 100%;
+    color: black;
+    margin: auto;
+    background-color: darkgray;
+    padding-bottom: 2rem;
+}
+.news-content{
+    overflow-y: auto;
+    max-height: 100%;
+    padding: 3rem;
+    font-size: 70%;
+    @media only screen and (max-width: 1250px){
+        padding: .5rem;
+        font-size: 60%;
+    }
+    @media only screen and (max-width: 750px){
+        padding: .5rem;
+        font-size: 50%;
+    }
+}
+
+.news-story {
+    align-items: center;
+  background-color: darkgray;
+  box-shadow: 
+    12px 12px 16px 0 rgba(0, 0, 0, 0.25),
+    -8px -8px 12px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  display: flex;
+  height: 200px;
+  justify-content: center;
+  text-decoration: none;
+  color: whitesmoke;
+  margin-right: 4rem;
+  width: 100%;
+}
+
+.news-link{
+    text-decoration: none;
+    color: whitesmoke;
+}
