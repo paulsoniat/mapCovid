@@ -31,6 +31,8 @@ const OtherCountry = ( { rootPath } ) => {
       }
           try {
             let countryShortCode;
+            let countryStatisticsResults;
+            let newsInfo;
             for (const country in countryDictionary) {
         
               if (name === countryDictionary[country]){
@@ -40,9 +42,7 @@ const OtherCountry = ( { rootPath } ) => {
             if (!countryData) {
               axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
               .then((res) => {
-                let countryStatisticsResults;
                 res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
-                setCountryData(countryStatisticsResults);
               }).then(()=> {
                 let config = {
                   headers : {
@@ -52,13 +52,7 @@ const OtherCountry = ( { rootPath } ) => {
                 if (countryCode) {
                   axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
                   .then((res) => {
-                    setNewsData(res.data.news);
-                  })
-                  .catch((err) => {
-                    
-                    setNewsData([])
-                  })
-                  .then(() => {
+                    newsInfo = res.data.news;
                     axios.get('https://corona.lmao.ninja/v2/jhucsse')
                     .then((res) => {
                       const countryByCity = [];
@@ -70,13 +64,21 @@ const OtherCountry = ( { rootPath } ) => {
                       })
                       if (countryByCity.length <= 1) {
                         console.log('in the length check')
+                        setCountryData(countryStatisticsResults);
+                        setNewsData(newsInfo);
                         setTableData([])
                         console.log(tableData, 'table data')
                       } else {
+                        setCountryData(countryStatisticsResults);
+                        setNewsData(newsInfo);
                         setTableData(countryByCity);
                       }
-                    })
                   })
+                  .catch((err) => {
+                    
+                    setNewsData([])
+                  })
+                    })
                 }
               })
             }
@@ -86,6 +88,8 @@ const OtherCountry = ( { rootPath } ) => {
           }
         }
   }, [countryData, newsData, name, countryCode]);
+
+  console.log(countryData, tableData, newsData)
 
 if (name && countryData && newsData && tableData) {
   return (
