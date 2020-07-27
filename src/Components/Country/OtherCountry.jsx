@@ -27,12 +27,14 @@ const OtherCountry = ( { rootPath } ) => {
         
         if (name === countryDictionary[country]){
           setCountryCode(country);
+          console.log(countryCode, 'country code')
         }
       }
           try {
             let countryShortCode;
             let countryStatisticsResults;
             let newsInfo;
+            const countryByCity = [];
             for (const country in countryDictionary) {
         
               if (name === countryDictionary[country]){
@@ -42,6 +44,7 @@ const OtherCountry = ( { rootPath } ) => {
             if (!countryData) {
               axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
               .then((res) => {
+                console.log(countryCode, res.data)
                 res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
               }).then(()=> {
                 let config = {
@@ -55,7 +58,6 @@ const OtherCountry = ( { rootPath } ) => {
                     newsInfo = res.data.news;
                     axios.get('https://corona.lmao.ninja/v2/jhucsse')
                     .then((res) => {
-                      const countryByCity = [];
                       console.log(countryByCity, 'city data')
                       res.data.forEach((city) => {
                         if (city.country === name) {
@@ -75,10 +77,15 @@ const OtherCountry = ( { rootPath } ) => {
                       }
                   })
                   .catch((err) => {
-                    
+                      console.log('this is error1')
                     setNewsData([])
                   })
-                    })
+                  }).catch((err) => {
+                    console.log('this is err')
+                    setCountryData(countryStatisticsResults);
+                        setNewsData([]);
+                        setTableData(countryByCity);
+                  })
                 }
               })
             }

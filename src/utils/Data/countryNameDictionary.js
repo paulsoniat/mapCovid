@@ -19,6 +19,8 @@ const countryNameDictionary = {
     "Central African Rep.": "Central African Republic",
     "W. Sahara": "Western Sahara",
     "S. Sudan": "South Sudan",
+    "Somaliland": "Somalia",
+    "Palestine": "Israel",
     "Congo" : "Congo (Brazzaville)",
     "Czechia": "Czech Republic",
     "Syria": "Syrian Arab Republic (Syria)",
