@@ -37,45 +37,50 @@ const OtherCountry = ( { rootPath } ) => {
                 countryShortCode = country;
               }
             }
-            axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
-            .then((res) => {
-              let countryStatisticsResults;
-              res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
-              setCountryData(countryStatisticsResults);
-            }).then(()=> {
-              let config = {
-                headers : {
-                  'Subscription-Key': '3009d4ccc29e4808af1ccc25c69b4d5d' 
+            if (!countryData) {
+              axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
+              .then((res) => {
+                let countryStatisticsResults;
+                res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
+                setCountryData(countryStatisticsResults);
+              }).then(()=> {
+                let config = {
+                  headers : {
+                    'Subscription-Key': '3009d4ccc29e4808af1ccc25c69b4d5d' 
+                  }
                 }
-              }
-              if (countryCode) {
-                axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
-                .then((res) => {
-                  setNewsData(res.data.news);
-                })
-                .catch((err) => {
-                  
-                  setNewsData([])
-                })
-                .then(() => {
-                  axios.get('https://corona.lmao.ninja/v2/jhucsse')
+                if (countryCode) {
+                  axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
                   .then((res) => {
-                    const countryByCity = [];
-                    res.data.forEach((city) => {
-                      if (city.country === name) {
-                        countryByCity.push(city);
+                    setNewsData(res.data.news);
+                  })
+                  .catch((err) => {
+                    
+                    setNewsData([])
+                  })
+                  .then(() => {
+                    axios.get('https://corona.lmao.ninja/v2/jhucsse')
+                    .then((res) => {
+                      const countryByCity = [];
+                      console.log(countryByCity, 'city data')
+                      res.data.forEach((city) => {
+                        if (city.country === name) {
+                          countryByCity.push(city);
+                        }
+                      })
+                      if (countryByCity.length <= 1) {
+                        console.log('in the length check')
+                        setTableData([])
+                        console.log(tableData, 'table data')
+                      } else {
+                        setTableData(countryByCity);
                       }
                     })
-                    if (countryByCity.length <= 1) {
-                      setTableData([])
-                    } else {
-                      setTableData(countryByCity);
-                    }
                   })
-                })
-              }
-            })
-          }
+                }
+              })
+            }
+            }
           catch(err) {
             setAllDataOverTime('none');
           }
