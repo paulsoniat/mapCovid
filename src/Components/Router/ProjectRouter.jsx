@@ -12,7 +12,7 @@ const ProjectRouter = ({
     <Switch>
       <Route
         path={`/country/:name`}
-        render={() => <Country setTooltipContent={setTooltipContent} setrootPath={`/Country`} />}
+        render={() => <Country setTooltipContent={setTooltipContent} />}
       />
       <Route
         path={`/country/United%20States%20of%20America`}
@@ -23,9 +23,9 @@ const ProjectRouter = ({
         render={() => <State />}
       />
       <Route path='/paul-linkedin' component={() => { 
-     window.location.href = 'https://www.linkedin.com/in/paul-soniat/'; 
-     return null;
-}}/>
+        window.location.href = 'https://www.linkedin.com/in/paul-soniat/'; 
+        return null;
+      }}/>
       <Route
         path={`/`}
         render={() => <MapChart setTooltipContent={setTooltipContent}/>}

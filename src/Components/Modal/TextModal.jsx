@@ -30,15 +30,3 @@ const TextModal = ({
 );
 
 export default TextModal;
-
-/*<a className="modal__close" onClick={handleClose}>
-                <span class="left">
-                <span class="circle-left"></span>
-                <span class="circle-right"></span>
-                </span>
-                <span class="right">
-                <span class="circle-left"></span>
-                <span class="circle-right"></span>
-                </span>
-            </a>
-            */

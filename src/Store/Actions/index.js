@@ -1,3 +1,4 @@
 export {
-    modalClose
+    ToggleModal,
   } from './ModalActions';
+  

@@ -7,6 +7,8 @@ import {
   Geographies,
   Geography
 } from "react-simple-maps";
+
+import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from "react-tooltip"
 import MapHover from './MapHover';
 import countryNameDictionary from '../../utils/Data/countryNameDictionary'
@@ -18,9 +20,12 @@ import TextModal from '../Modal/TextModal'
 
 //TODO: Break out into redux and set up store
 
+import * as actionTypes from '../../Store/Actions/ActionTypes';
+
 const MapChart = ({ setTooltipContent, display }) => {
   
-  const [modalDisplay, setModalDisplay] = useState(true);
+  const dispatch = useDispatch();
+  const modal = useSelector((state) => state.modal);
   const [yearlyData, setYearlyData] = useState(null);
   
   useEffect(()=>{
@@ -74,7 +79,7 @@ const MapChart = ({ setTooltipContent, display }) => {
       })
     }
   }, [yearlyData]);
-
+console.log(modal);
 const h = window.innerHeight - 60
 || document.documentElement.clientHeight -60
 || document.body.clientHeight - 60;
@@ -113,26 +118,16 @@ const h = window.innerHeight - 60
   const modalHeaderText = "Welcome to the Covid-19 Dashboard";
   const modalBodyText = ["<div>  Hover/Click on a country to learn about the country's Covid situation.</br></br>", " I used multiple API's for data, so if it is inconsitent/missing the data might not be available for that source or updated at a different time.</br></br>", " I tried to find the largest range of free data sources with the most up to date information, they are - {COVID19-API, NovelCOVID API, the Virus Tracker, Smartable.ai, CovidTracking}.</br></br>", " Currently I am paying all costs for hosting and keeping this add free!</br></br>", "You can support the site by buying me a coffee and connect with me on <a href=/paul-linkedin> LinkedIn </a> </br></br>",]
   const handleModalClose = () => {
-    setModalDisplay(!modalDisplay)
+    dispatch({type: actionTypes.MODAL_TOGGLE});
   }
 
-  if (modalDisplay) {
+  if (modal.displayModal) {
        return (
         <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
       )
   }
-  if (display === "none") {
-    return (
-      null
-    )
-  } else {
     return (
       <>
-      {
-      (modalDisplay) ? (
-        <TextModal handleClose={handleModalClose} displayText={modalHeaderText} textPrompt={modalBodyText}/>
-      ) : null
-      }
       {
         (yearlyData && yearlyData.arcs)
           ? (
@@ -233,7 +228,6 @@ const h = window.innerHeight - 60
       }
       </>
     );
-  }
 };
 
 export default memo(MapChart);

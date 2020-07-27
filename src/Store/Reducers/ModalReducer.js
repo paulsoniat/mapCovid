@@ -1,14 +1,12 @@
-import * as actionTypes from '../actions/actionTypes';
+import * as actionTypes from '../Actions/ActionTypes';
 
 const initialState = {
-  loading: false,
-  loadingText: '',
   displayModal: true,
 };
 
-const generalReducer = (state = initialState, action) => {
+const modalReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.TEXT_MODAL_TOGGLE: {
+    case actionTypes.MODAL_TOGGLE: {
       return {
         ...state,
         displayModal: !state.displayModal,
@@ -19,4 +17,4 @@ const generalReducer = (state = initialState, action) => {
   }
 };
 
-export default generalReducer;
+export default modalReducer;
