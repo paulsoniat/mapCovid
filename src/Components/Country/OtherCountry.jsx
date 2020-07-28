@@ -34,6 +34,9 @@ const OtherCountry = ( { rootPath } ) => {
             let countryShortCode;
             let countryStatisticsResults;
             let newsInfo;
+            let allDayRecords = [];
+            let everyFifthDay = allDataOverTime;
+            everyFifthDay = [];
             const countryByCity = [];
             for (const country in countryDictionary) {
         
@@ -53,6 +56,38 @@ const OtherCountry = ( { rootPath } ) => {
                   }
                 }
                 if (countryCode) {
+                  axios.get(`https://corona.lmao.ninja/v2/historical/${name}?lastdays=90`)
+                    .then((res) => {
+                      const timelineData = res.data.timeline;
+                  everyFifthDay = Object.keys(res.data.timeline.cases);
+                  everyFifthDay = everyFifthDay.reduce((seed, key) => {
+                      
+                      seed.push({'day': key}); 
+                      return seed; 
+                  }, [])
+                  console.log(timelineData)
+                everyFifthDay = everyFifthDay.map((key) => {
+                    for (const caseData in timelineData.cases) {
+                        if (caseData === key.day) {
+                            key.cases = timelineData.cases[key.day]
+                        }
+                    }
+                    for (const deathData in timelineData.deaths) {
+                      if (deathData === key.day) {
+                        /*
+                          key.day = key.day.slice(0, -3)
+                          console.log(typeof(key.day), key.day)*/
+                          key.deaths = timelineData.deaths[key.day]
+                      }
+                  }
+                  return key;
+                });
+                everyFifthDay.forEach((day, index) => {
+                  if (index % 5 === 0) {
+                    allDayRecords.push(day);
+                  }
+                })
+                  }); 
                   axios.get(`https://api.smartable.ai/coronavirus/news/${countryCode}`, config)
                   .then((res) => {
                     newsInfo = res.data.news;
@@ -68,11 +103,13 @@ const OtherCountry = ( { rootPath } ) => {
                         console.log('in the length check')
                         setCountryData(countryStatisticsResults);
                         setNewsData(newsInfo);
-                        setTableData([])
+                        setTableData([]);
+                        setAllDataOverTime(allDayRecords)
                         console.log(tableData, 'table data')
                       } else {
                         setCountryData(countryStatisticsResults);
                         setNewsData(newsInfo);
+                        setAllDataOverTime([])
                         setTableData(countryByCity);
                       }
                   })
@@ -94,16 +131,16 @@ const OtherCountry = ( { rootPath } ) => {
             setAllDataOverTime('none');
           }
         }
-  }, [countryData, newsData, name, countryCode]);
+  }, [countryData, newsData, name, countryCode, tableData, allDataOverTime]);
 
-  console.log(countryData, tableData, newsData)
+  console.log(countryData, tableData, newsData, allDataOverTime)
 
-if (name && countryData && newsData && tableData) {
+if (name && countryData && newsData && tableData && allDataOverTime) {
   return (
     <>
       <div className="country-container">
           <div className="country-table">
-                <CountryTable data={tableData} columns={otherCountryColumns} />
+                <CountryTable data={tableData} dataOverTime={allDataOverTime} columns={otherCountryColumns} />
           </div>
     <div className="column-container">
         <div className="country-column">

@@ -13,10 +13,10 @@ const Navbar = () => {
               </NavLink>
               <div>
                 <link href="https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext" rel="stylesheet" />
-                  <NavLink className="bmc-button" target="_blank" to="https://www.buymeacoffee.com/paulsoniat">
-                  <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy me a coffee" />
+                  <a className="bmc-button" target="_blank" href="https://www.buymeacoffee.com/paulsoniat">
+                  <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"  />
                     Buy me a coffee
-                </NavLink>
+                </a>
               </div>
     </div>
     </>

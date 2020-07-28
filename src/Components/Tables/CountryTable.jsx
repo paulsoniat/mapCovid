@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTable, usePagination } from 'react-table';
 import BacteriaLoader from '../Loaders/BacteriaLoader';
+import CountryGraphOverTime from '../Country/CountryGraphOverTime';
 
 const StateTable = ({
   columns,
-  data
+  data,
+  dataOverTime,
 }) => {
 
   const {
@@ -97,7 +99,13 @@ const StateTable = ({
       </>
   
     )
-  } else {
+  } 
+  if (!data.length && dataOverTime.length) {
+    return (
+      <CountryGraphOverTime data={dataOverTime} />
+    )
+  }
+  else {
     return (
       <div>
           City Data is not available for this country.
