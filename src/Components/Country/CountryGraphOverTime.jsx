@@ -22,14 +22,13 @@ const StackedBarChart = ({data}) => {
     const wrapperRef = useRef();
     const dimensions = useResizeObserver(wrapperRef);
   
-    let allKeys = ["cases", "deaths"];
+    let allKeys = ["cases"];
     useEffect(()=> {
     
   })
 
 const colors = {
-  "cases": "green",
-  "deaths": "black",
+  "cases": "red",
 };
 
 const [keys] = useState(allKeys);
