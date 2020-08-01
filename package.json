@@ -33,7 +33,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "aws s3 sync build/ s3://wheretocovid --acl public-read"
+    "deploy": "aws s3 sync build/ s3://covidinformation.net --acl public-read",
+    "deploy-dev": "aws s3 sync build/ s3://wheretocovid --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"

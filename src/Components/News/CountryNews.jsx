@@ -17,6 +17,9 @@ const CountryNews = ( { newsData } ) => {
         .then((res) => {
           setAltData(res.data.news);
         })
+        .catch((err) => {
+          setAltData([])
+        })
       }
   });
 

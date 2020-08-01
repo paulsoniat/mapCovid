@@ -75,9 +75,16 @@ const OtherCountry = ( { rootPath } ) => {
                     setNewsData([])
                   })
                   }).catch((err) => {
-                    setCountryData(countryStatisticsResults);
-                        setNewsData([]);
-                        setTableData(countryByCity);
+                    if (countryStatisticsResults) {
+                      setCountryData(countryStatisticsResults);
+                      setNewsData([]);
+                      setTableData(countryByCity);
+                    }
+                    else {
+                      setCountryData([]);
+                      setNewsData([]);
+                      setTableData(countryByCity);
+                    }
                   })
                 }
               })
@@ -88,7 +95,7 @@ const OtherCountry = ( { rootPath } ) => {
           }
         }
   }, [countryData, newsData, name, countryCode]);
-
+console.log(countryData, name, newsData, tableData)
 if (name && countryData && newsData && tableData) {
   return (
     <>
