@@ -24,6 +24,13 @@ const rootReducer = combineReducers({
   modal: modalReducer,
 });
 
+const trackingId = "UA-174216001-1"; // Replace with your Google Analytics tracking ID
+ReactGA.initialize(trackingId);
+
+history.listen(location => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
 const store = createStore(
   rootReducer,
   applyMiddleware(thunk),
