@@ -41,6 +41,10 @@ if (properties) {
                 Recovered - {rounded(properties.totalRecovered)}
             </div>
             <br/>
+            <div style={{color: "orangered"}}>
+                % Infected - {((properties.totalConfirmed/properties.POP_EST) * 100).toString().slice(0, 4) + "%"}
+            </div>
+            <br/>
         </div> 
     </div>
     </>

@@ -67,6 +67,7 @@ const UsMapByCountry = ({ setToolTip }) => {
                     const allData = res;
                     let mapData = res.data;
                     mapData = mapData.objects.states.geometries
+                    console.log(mapData)
                     mapData.forEach((mapState) => {
                         stateResults.data.forEach((dataState) => {
                             if (stateDictionary[dataState.state] === mapState.properties.name) {

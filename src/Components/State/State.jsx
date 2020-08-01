@@ -31,6 +31,7 @@ const State = () => {
         const countyData = {newDeaths: 0, confirmedCases: 0, newCases:0}
         res.data.message.forEach((county) => {
           if (county.state_name === name) {
+            console.log(county)
             countyData.newDeaths = countyData.newDeaths += county.death;
             countyData.confirmedCases = countyData.confirmedCases += county.confirmed;
             countyData.newCases = countyData.newCases += county.new;

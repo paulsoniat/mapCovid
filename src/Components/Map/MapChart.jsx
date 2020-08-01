@@ -72,6 +72,7 @@ const MapChart = ({ setTooltipContent, display }) => {
           })
           const allGeoData = geoUrlRes
           geoUrl = allGeoData;
+          console.log(geoUrl)
           setTimeout(() => {
             setYearlyData(geoUrl)
           }, 1500)

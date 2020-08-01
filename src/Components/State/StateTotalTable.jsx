@@ -6,6 +6,7 @@ const StateTotalTable = ({
 
   // Render Data Table UI
   if (data) {
+    console.log(data)
   return (
     <>
     {data.map((item, index) => {
