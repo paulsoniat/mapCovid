@@ -79,7 +79,6 @@ const MapChart = ({ setTooltipContent, display }) => {
       })
     }
   }, [yearlyData]);
-console.log(modal);
 const h = window.innerHeight - 60
 || document.documentElement.clientHeight -60
 || document.body.clientHeight - 60;

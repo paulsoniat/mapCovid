@@ -2,12 +2,12 @@ import React, { useState} from "react";
 import ReactTooltip from "react-tooltip";
 import ProjectRouter from '../Router/ProjectRouter';
 import { Router } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import history from '../../utils/history';
 import thunk from 'redux-thunk';
 import {
   createStore,
   applyMiddleware,
-  compose,
   combineReducers,
 } from 'redux';
 

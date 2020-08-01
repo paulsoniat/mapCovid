@@ -32,8 +32,6 @@ const StateTable = ({
     usePagination
   )
 
-  console.log(data, 'in data table')
-
   if (data.length) {
     return (
       <>

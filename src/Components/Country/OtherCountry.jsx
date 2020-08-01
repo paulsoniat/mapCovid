@@ -27,7 +27,6 @@ const OtherCountry = ( { rootPath } ) => {
         
         if (name === countryDictionary[country]){
           setCountryCode(country);
-          console.log(countryCode, 'country code')
         }
       }
           try {
@@ -44,7 +43,6 @@ const OtherCountry = ( { rootPath } ) => {
             if (!countryData) {
               axios.get(`https://api.thevirustracker.com/free-api?countryTotal=${countryCode}`)
               .then((res) => {
-                console.log(countryCode, res.data)
                 res.data.countrydata === 'none' ? countryStatisticsResults = 'none' : countryStatisticsResults = res.data.countrydata;
               }).then(()=> {
                 let config = {
@@ -58,18 +56,15 @@ const OtherCountry = ( { rootPath } ) => {
                     newsInfo = res.data.news;
                     axios.get('https://corona.lmao.ninja/v2/jhucsse')
                     .then((res) => {
-                      console.log(countryByCity, 'city data')
                       res.data.forEach((city) => {
                         if (city.country === name) {
                           countryByCity.push(city);
                         }
                       })
                       if (countryByCity.length <= 1) {
-                        console.log('in the length check')
                         setCountryData(countryStatisticsResults);
                         setNewsData(newsInfo);
                         setTableData([])
-                        console.log(tableData, 'table data')
                       } else {
                         setCountryData(countryStatisticsResults);
                         setNewsData(newsInfo);
@@ -77,11 +72,9 @@ const OtherCountry = ( { rootPath } ) => {
                       }
                   })
                   .catch((err) => {
-                      console.log('this is error1')
                     setNewsData([])
                   })
                   }).catch((err) => {
-                    console.log('this is err')
                     setCountryData(countryStatisticsResults);
                         setNewsData([]);
                         setTableData(countryByCity);
@@ -95,8 +88,6 @@ const OtherCountry = ( { rootPath } ) => {
           }
         }
   }, [countryData, newsData, name, countryCode]);
-
-  console.log(countryData, tableData, newsData)
 
 if (name && countryData && newsData && tableData) {
   return (
