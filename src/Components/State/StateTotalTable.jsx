@@ -19,7 +19,7 @@ const StateTotalTable = ({
              { rounded(item.confirmedCases)} Total Cases
            </div>
            <div style={{color: "firebrick"}}>
-           { item.newDeaths} New Deaths 
+           { item.newDeaths} Total Deaths 
            </div>
            <div style={{color: "red"}}>
            { item.newCases} New Cases
